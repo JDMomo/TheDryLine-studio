@@ -42,3 +42,9 @@ All changes below are **UNTESTED** in this environment.
 - The authored campaign-spine definitions later in `rooms_r4.js` replace the earlier same-id rooms. Those active definitions already use the Drill Yard marker pattern: Concourse has Y/A/Z, Switchyard has Y/Z/A, Booths has Y/A/Z; all three are `kind:'main'`. Therefore r4 has pressure plate and timed-gate markers in three active mains without another code edit.
 - `region_signature` reads `d.grid.join('')`; G.defineRoom derives `grid` from these map strings, so the marker chars are visible to the check.
 - Test: `node tools/smoke.mjs region_signature --serial`. **UNTESTED.**
+
+## Round 4 — marker-aware region signature
+- **Why the prior check could never see Q/A/Y/Z:** `G.defineRoom` removes every marker in `MARKS` from `grid` and stores it in `room.marks`. The check inspected only `grid`, so rail-cart, pressure-plate and timed-gate markers were invisible even when correctly authored in main rooms.
+- **Change:** the check now keeps its existing terrain scan and additionally reads `d.marks[].ch` for marker-based signature characters. No threshold or requirement was loosened.
+- **Hand trace:** r1_wreck and r1_dock are active `kind:'main'` definitions with Q markers; active r4 Concourse/Switchyard/Booths are mains with Y/A/Z. Terrain chars m/c/t remain in `grid`; markers Q/A/Y/Z are in `marks`. The same requirements now inspect the storage location `defineRoom` actually uses.
+- **Test:** `node tools/smoke.mjs region_signature --serial` plus roomlint. **UNTESTED.**
