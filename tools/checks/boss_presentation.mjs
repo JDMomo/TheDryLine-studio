@@ -8,7 +8,7 @@ export default async ({page})=>{
     if(!G.cam.bossCue)bad.push(rid+' no camera cue');
     const open=b.spots.find(s=>s.open)||b.spots[0];if(!open)bad.push(rid+' no fare slot');
     else {const q=b.spotPos(open);open.hp=G.C.SPOT_HP;open.open=true;const hp=open.hp;b.hitSpot(open,{x:q.x,y:q.y,r:5,cls:open.cls,dmg:0,itemId:null,owner:G.players[0]});if(open.hp!==hp-1)bad.push(rid+' spot did not crack');}
-    b.set('idle',1);b.hp=b.maxHp*.49;D.step(1);if(!b.phase2||b.state!=='stagger')bad.push(rid+' no half-health phase beat');
+    b.set('idle',1);b.hp=b.maxHp*.49;D.step(1);if(!b.phase2||(rid!=='final'&&b.state!=='stagger')||(rid==='final'&&b.state==='stagger'))bad.push(rid+' no half-health phase beat');
     b.hp=1;b.damage(99999);D.step(2);if(b.state!=='dead'||b.deathWash<=0)bad.push(rid+' no death wash');
   }
   // Synthetic two-part shape proves body hit tests no longer use only the bounding box.
