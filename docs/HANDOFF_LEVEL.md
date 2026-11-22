@@ -33,3 +33,12 @@ All changes below are **UNTESTED** in this environment.
 - **Hand trace:** `region_signature` requires r4 signature presence in >=3 mains, plus at least one `t`, `A`, and `Y/Z`. Concourse, Switchyard, and Booths now each contain at least one requested signature character; tar is present in Concourse/Booths. The new control characters sit in open floor lanes and do not replace exits/trunks.
 - **Expected:** r4 signature room count is at least 3 and all required categories are nonempty.
 - **Test:** `node tools/smoke.mjs region_signature --serial`; traverse Concourse/Switchyard/Booths without using the controls and confirm the public floor route stays open.
+
+## Round 3 — r1 cart marker lint
+- Moved `r1_wreck` cart marker Q from col 37 to col 41, an open floor marker position with rows 12–13 clear above it; the old position was under authored deck mass. **UNTESTED.**
+- Test: roomlint/region_signature and enter r1_wreck to verify the cart spawns on the open service pocket.
+
+## Round 3 — r4 signature trace
+- The authored campaign-spine definitions later in `rooms_r4.js` replace the earlier same-id rooms. Those active definitions already use the Drill Yard marker pattern: Concourse has Y/A/Z, Switchyard has Y/Z/A, Booths has Y/A/Z; all three are `kind:'main'`. Therefore r4 has pressure plate and timed-gate markers in three active mains without another code edit.
+- `region_signature` reads `d.grid.join('')`; G.defineRoom derives `grid` from these map strings, so the marker chars are visible to the check.
+- Test: `node tools/smoke.mjs region_signature --serial`. **UNTESTED.**
