@@ -65,12 +65,12 @@ class Enemy {
   damage(d, fromX) {
     if (this.dead) return;
     if (this.noLoot) {                                // an enemy a boss summoned for the fight (b.summon(.., { loot: false })): no scrip, no mend, no defeat art
-      this.hp -= d; this.flash = fx.flashT(0.1); this.kbT = 0.12; this.kbV = Math.sign(this.x - fromX || 1) * (this.def.heavy ? 60 : 220);
+      this.hp -= d; this.flash = fx.flashT(0.1); fx.hitstop = Math.max(fx.hitstop, 0.05); this.kbT = 0.12; const weight = Math.max(0.5, this.def.weight || (this.def.heavy ? 3.5 : 1)); this.kbV = Math.sign(this.x - fromX || 1) * 220 / weight;
       if (this.hp <= 0) { this.dead = true; fx.spark(this.x, this.y - this.h / 2, 18, '#e9e2cf', 320, 0.5); }
       return;
     }
     if (this.def.guard && this.def.guard(this, d, fromX) === false) return;   // guard(e, d, fromX): return false to block the hit
-    this.hp -= d; this.flash = fx.flashT(0.1); this.kbT = 0.12; this.kbV = Math.sign(this.x - fromX || 1) * (this.def.heavy ? 60 : 220);
+    this.hp -= d; this.flash = fx.flashT(0.1); fx.hitstop = Math.max(fx.hitstop, 0.05); this.kbT = 0.12; const weight = Math.max(0.5, this.def.weight || (this.def.heavy ? 3.5 : 1)); this.kbV = Math.sign(this.x - fromX || 1) * 220 / weight;
     if (this.hp <= 0) {
       this.dead = true;
       const skin = this.skin();
