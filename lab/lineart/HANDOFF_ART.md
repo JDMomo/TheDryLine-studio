@@ -24,3 +24,9 @@ All browser visual results are **UNTESTED** here; repository inputs and code pat
 - `index.html` now loads `./engine_v4.js` and draws Wanderer/Strider/Gearling live at 1x and 4x on canvas; it no longer presents a saved PNG as the current engine proof.
 - `pass_72_vs_painted.html` uses existing relative paths `./engine_v4.js` and `./_refs/*.png`; those PNGs are generated from the branch's own b64 files by `decode_refs.mjs`.
 - **Test:** decode refs, open both HTML files, verify no console error and all six live index renders plus three painted comparison rows appear. **UNTESTED.**
+
+## Round 4 — committed Pass 73
+- Replaced v4 with the compact browser renderer used as the Pass-73 geometry/hatching source: Wanderer is explicitly multipart (instrument, two scarf tails, layered cloak, two sleeves/hands, face/hair/collar, brim/crown/frog, legs/boots); Strider and Gearling remain multipart.
+- Committed `passes/pass_73.png`, rendered from the same authored geometry and hatch/value algorithm in the local raster proof port. The browser engine remains the authoritative live implementation.
+- **File-integrity re-read:** engine begins with IIFE, G/TAU declaration, then PAL declaration on separate physical lines; no literal `\\n` token was introduced by the write.
+- Test: open `index.html` and compare its live 1x/4x renders to `passes/pass_73.png`; inspect painted comparison after decoding refs. **UNTESTED in game.**
