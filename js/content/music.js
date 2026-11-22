@@ -153,6 +153,15 @@ const music = G.music = {
 
 const D = '. . . . . . . . . . . . . . . .';
 
+// Last Timetable: new four-bar railway leitmotif; data only, no engine changes.
+const LAST_TIMETABLE = {
+  A: 'D4 - - A4 - F4 - E4 - - C4 - D4 - - -',
+  B: 'F4 - - A4 - G4 - E4 - D4 - - A3 - - -',
+  C: 'D4 - F4 - A4 - C5 - A4 - G4 - F4 - E4 -',
+  D: 'E4 - - G4 - F4 - D4 - C4 - - D4 - - -'
+};
+const lastTimetableLayer = () => ({ id:'last_timetable', role:'motif', inst:'bell', vol:0.24, pan:-0.12, rev:0.55, dly:0.28, parts:LAST_TIMETABLE, order:'____________ABCD' });
+
 // ---- title: The Line Waits (D dorian, 4/4, 84, 16 bars)
 defineTrack({ id: 'title', title: 'The Line Waits', bpm: 84, sig: [4, 4], bars: 16, key: 'D dorian', mood: 'a lamp left on; warm, unhurried, a little sad', layers: [
   { id: 'bed', role: 'bed', inst: 'pad', vol: 0.5, rev: 0.5, parts: { A: chord('D3+A3+F4', 16), B: chord('G3+B3+D4', 16), C: chord('C3+G3+E4', 16), D: chord('A2+E3+C4', 16) }, order: 'ABCD'.repeat(4) },
@@ -175,7 +184,8 @@ defineTrack({ id: 'hub', title: 'The Junction', bpm: 96, sig: [3, 4], bars: 16, 
   { id: 'chords', role: 'arp', inst: 'epiano', vol: 0.35, pan: -0.2, rev: 0.4, parts: {
       A: '. . . . F4+A4+C5 - - - F4+A4+C5 - - -', B: '. . . . D4+F4+A4 - - - D4+F4+A4 - - -', C: '. . . . Bb3+D4+F4 - - - Bb3+D4+F4 - - -', D: '. . . . C4+E4+G4 - - - C4+E4+G4 - - -' }, order: '____ABCDABCDABCD' },
   { id: 'fare', role: 'motif', inst: 'bell', vol: 0.35, pan: 0.3, rev: 0.6, dly: 0.4, parts: { A: 'F5 - A5 - C6 - A5 - F6 - - -' }, order: '_______A_______A' },
-  { id: 'perc', role: 'perc', inst: 'drums', vol: 0.3, parts: { A: 'k . . . h . . . h . . .' }, order: '________AAAAAAAA' }
+  { id: 'perc', role: 'perc', inst: 'drums', vol: 0.3, parts: { A: 'k . . . h . . . h . . .' }, order: '________AAAAAAAA' },
+  lastTimetableLayer()
 ] });
 
 // ---- r1 Wreck Quay: Hulls and Chains (E minor, 4/4, 108, swing, 16 bars)
