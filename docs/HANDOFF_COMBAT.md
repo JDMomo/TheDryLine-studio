@@ -27,3 +27,9 @@ All entries are **UNTESTED** in this environment unless the studio lead records 
 - **Code traced:** `combat.melee()` calls `Enemy.damage()`, then `Player.slashLanded()`. `Enemy.damage()` writes `fx.hitstop = Math.max(fx.hitstop, 0.05)`. `slashLanded()` calls `fx.jolt(...)`; `fx.jolt()` also writes `fx.hitstop = Math.max(fx.hitstop, stop)`.
 - **Why no code change:** both paths use max, never addition. A normal slash therefore resolves to the larger requested value; heavy slash likewise keeps its larger 0.09 request.
 - **Test:** slash one enemy normally and one with Heavy Cut while inspecting `G.fx.hitstop`; verify it is max-request behavior, not 0.05 plus the slash request. **UNTESTED.**
+
+## Next — pogo-top inventory
+- **Change:** added `enemy_pogo_tops.mjs`, listing every registered enemy and whether its physical top is pogo-able.
+- **Hand trace:** combat melee treats a down slash like every other enemy-body rectangle hit; no enemy definition currently sets a pogo exclusion and all 11 definitions have positive w/h physical bodies. Therefore every current regular enemy has a top and uses the common down-slash hit path.
+- **Expected:** table lists all 11 as pogo; check fails if a future enemy explicitly opts out with `noPogo:true`.
+- **Test:** `node tools/smoke.mjs enemy_pogo_tops --serial`; manually pogo each enemy type once. **UNTESTED.**
