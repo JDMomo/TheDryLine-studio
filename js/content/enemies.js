@@ -523,7 +523,7 @@ G.defineEnemy({
 
 /* ---------- 10. Harvester: support tripod; a long repair tell restores nearby damaged enemies if allowed to finish ---------- */
 G.defineEnemy({
-  id:'harvester', name:'Harvester', hp:52, w:38, h:42, touch:1, shards:[4,5], heavy:true, staticArt:{w:56,h:52},
+  id:'harvester', name:'Harvester', hp:52, w:38, h:42, touch:1, shards:[4,5], heavy:true, mat:['metal','wet'], staticArt:{w:56,h:52},
   staticFx(e,ctx){if(e.state==='wind'){const k=e.prog();ctx.save();ctx.translate(e.x,e.y);ctx.globalAlpha=.18+.35*k;ctx.fillStyle=LAMP;ctx.beginPath();ctx.arc(0,-22,28+12*k,0,TAU);ctx.fill();ctx.globalAlpha=1;warnRing(ctx,-22,24,k);ctx.restore();}},
   init(e){ e.face=G.run.rng.chance(0.5)?1:-1; e.cool=2+rr(); e.set('walk',0); },
   update(e,dt){
@@ -558,7 +558,7 @@ G.defineEnemy({
 
 /* ---------- 11. Mirage: phasing ambusher; vanishes, relocates on safe footing, tells, then commits to a dash ---------- */
 G.defineEnemy({
-  id:'mirage', name:'Mirage', hp:28, w:28, h:40, touch:1, shards:[3,5], staticArt:{w:50,h:56},
+  id:'mirage', name:'Mirage', hp:28, w:28, h:40, touch:1, shards:[3,5], mat:['slick'], staticArt:{w:50,h:56},
   staticPose(e){return {alpha:e.state==='fade'?Math.max(.12,e.t/.42):1,rot:e.state==='dash'?.18*(e.face||1):0};},
   staticFx(e,ctx){if(e.state==='tell'){ctx.save();ctx.translate(e.x,e.y);ctx.scale(e.face,1);warnRing(ctx,-22,20,e.prog());ctx.restore();}},
   init(e){ e.face=G.run.rng.chance(0.5)?1:-1; e.cool=1.5+rr(); e.set('watch',0); },

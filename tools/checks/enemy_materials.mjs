@@ -2,9 +2,9 @@
 export default async ({page})=>{
  const r=await page.evaluate(()=>{
   const wanted={
-    ballast_crab:['stone','brittle'],brine_spout:['wet'],turnstile:['metal'],signal_gull:['metal'],
+    ballast_crab:['brittle'],brine_spout:['wet'],turnstile:['metal'],signal_gull:['metal'],
     lamp_wisp:['flammable'],brine_toad:['wet'],handcar:['metal','heavy'],hanging_lamp:['metal','brittle'],
-    sapper:['metal','flammable'],harvester:['metal'],mirage:['cloth']
+    sapper:['metal','flammable'],harvester:['metal','wet'],mirage:['slick']
   },bad=[];
   for(const [id,tags] of Object.entries(wanted)){const d=G.enemyDefs[id];if(!d){bad.push('missing '+id);continue}
     if(!Array.isArray(d.mat))bad.push(id+' has no mat[]');
