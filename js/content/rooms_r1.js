@@ -118,6 +118,10 @@ G.defineRoom({
     put(7, 34, 'D');                          // signal-mast access: authored parent for Dash trial
     put(9, 38, '======');
 
+    // Wreck Quay signature on the safe deck: mud slows but does not block; the cart is a readable moving landmark.
+    put(15, 35, 'mmmm');
+    put(14, 37, 'Q');
+
     // Quiet service pocket: one deliberate breath after the landmark climb and before the final encounter lane.
     put(14, 39, 'H');
     put(14, 40, '?');
