@@ -255,7 +255,7 @@ class Boss {
     this.t -= dt; this.sAge += dt;
     if (this.state === 'dead') { this.deathWash = Math.max(0, this.deathWash - dt); return; }
     // Shared phase presentation: every Warden gets one harmless half-health beat before its enraged pattern takes over.
-    if (!this.phase2 && this.hp > 0 && this.hp <= this.maxHp / 2 && this.state !== 'intro' && this.state !== 'stagger') {
+    if (this.region !== 'final' && !this.phase2 && this.hp > 0 && this.hp <= this.maxHp / 2 && (this.state === 'idle' || this.state === 'recover')) {
       this.phase2 = true; this.set('stagger', 0.7); fx.jolt(0.08, 12); fx.ring(this.x, this.y - this.h / 2, 20, 260, '#fff3c4', 0.45);
       fx.say(this.def.name + ' — Phase II', 'The pattern changes.', 2.2);
     }
