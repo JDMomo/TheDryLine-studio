@@ -1,12 +1,1 @@
-/* Build a self-contained release directory and zip without mutating game sources.
-   node tools/build_release.mjs [YYYY-MM-DD] */
-import fs from 'fs';import path from 'path';import {fileURLToPath} from 'url';import {spawnSync} from 'child_process';
-const root=path.join(path.dirname(fileURLToPath(import.meta.url)),'..'),date=process.argv[2]||new Date().toISOString().slice(0,10),dist=path.join(root,'dist'),out=path.join(dist,'TheDryLine-'+date);
-fs.rmSync(out,{recursive:true,force:true});fs.mkdirSync(out,{recursive:true});
-const skip=new Set(['.git','node_modules','tools','docs','reference','dist','lab']);
-function cp(src,dst){const st=fs.statSync(src);if(st.isDirectory()){fs.mkdirSync(dst,{recursive:true});for(const n of fs.readdirSync(src))if(!skip.has(n))cp(path.join(src,n),path.join(dst,n));}else fs.copyFileSync(src,dst)}
-for(const n of fs.readdirSync(root))if(!skip.has(n))cp(path.join(root,n),path.join(out,n));
-const zip=path.join(dist,'TheDryLine-'+date+'.zip');fs.rmSync(zip,{force:true});
-let q=spawnSync('zip',['-qr',zip,path.basename(out)],{cwd:dist,stdio:'inherit'});
-if(q.status!==0){console.error('zip command unavailable or failed; release directory is ready at '+out);process.exit(q.status||1)}
-console.log(zip);
+import fs from 'fs';import path from 'path';import {fileURLToPath} from 'url';import {spawnSync} from 'child_process';const root=path.join(path.dirname(fileURLToPath(import.meta.url)),'..'),date=process.argv[2]||new Date().toISOString().slice(0,10),dist=path.join(root,'dist'),out=path.join(dist,'TheDryLine-'+date);fs.rmSync(out,{recursive:true,force:true});fs.mkdirSync(out,{recursive:true});const skip=new Set(['.git','node_modules','tools','docs','reference','dist','lab']);function cp(src,dst){const st=fs.statSync(src);if(st.isDirectory()){fs.mkdirSync(dst,{recursive:true});for(const n of fs.readdirSync(src))if(!skip.has(n))cp(path.join(src,n),path.join(dst,n));}else fs.copyFileSync(src,dst)}for(const n of fs.readdirSync(root))if(!skip.has(n))cp(path.join(root,n),path.join(out,n));const zip=path.join(dist,'TheDryLine-'+date+'.zip');fs.rmSync(zip,{force:true});const q=spawnSync('zip',['-qr',zip,path.basename(out)],{cwd:dist,stdio:'inherit'});if(q.status!==0){console.error('release directory ready at '+out);process.exit(q.status||1)}console.log(zip);
