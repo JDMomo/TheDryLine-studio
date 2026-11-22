@@ -15,3 +15,8 @@ All entries are **UNTESTED** in this environment.
 - **Hand trace:** builder's only roots are exactly `index.html/css/js/assets`; recursive copy records those relative paths; ZIP entries are written from that list. The check searches the ZIP central directory, requires index.html and prefixes css/js/assets, and rejects tools/docs/reference. `--out` changes only destination, not roots.
 - **Expected:** isolated release zip contains the four shipping roots and no development roots.
 - **Test:** `node tools/smoke.mjs release_kit --serial`. **UNTESTED.**
+
+## Round 2 — known issues refresh
+- **Change:** rewrote `docs/KNOWN_ISSUES.md` from the studio-lead round-2 review as eight plain player-facing/test-facing lines, explicitly marking test-only items.
+- **Expected:** release reviewers see the current merged-build blockers rather than the older generic list.
+- **Test:** compare the file line-by-line with the round-2 review; no runtime test required. **UNTESTED as integrated status.**
