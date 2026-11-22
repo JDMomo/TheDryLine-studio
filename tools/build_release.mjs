@@ -5,8 +5,9 @@ import { fileURLToPath } from 'node:url';
 import zlib from 'node:zlib';
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
-const dist = path.join(root, 'dist');
-const date = process.argv[2] || new Date().toISOString().slice(0, 10);
+const outArg = process.argv.find(a => a.startsWith('--out='));
+const dist = outArg ? path.resolve(outArg.slice(6)) : path.join(root, 'dist');
+const date = process.argv.find(a => /^\d{4}-\d{2}-\d{2}$/.test(a)) || new Date().toISOString().slice(0, 10);
 const zipPath = path.join(dist, 'TheDryLine-' + date + '.zip');
 const roots = ['index.html', 'css', 'js', 'assets'];
 
