@@ -446,3 +446,43 @@ Send a first batch of just the Wanderer's `ref`, `idle`, `run`, `jump` and `slas
 - The four token cuts keep fixed colours in the game (pierce blue, arc yellow, burst orange-red, ground pink) so players can read them. That is why effects are requested in white and gold: the game colours them.
 - If these sheets are made with an image generator, stores such as Steam and itch.io require that to be disclosed on the game's page.
 - Expect to regenerate. Roughly one sheet in three will need a fix phrase. Consistency is the hard part; the reference sheet attached to every request is what holds it together.
+
+
+# 2026-11-22 missing production exports — ready-to-use prompts
+
+These prompts are for the studio lead's approved image workflow. Do not substitute outside image services.
+
+## Tollkeeper states
+```
+SHEET: tollkeeper_states | 3 frames, 3 across | 432x84 WebP final strip, three equal 144x84 cells. Canonical Tollkeeper watercolor/ink design, strict right-facing side view. Frame 1 Normal: dome-backed toll engine on four short legs, overlapping slate shell plates, pale wooden face plate, warm furnace underbelly. Frame 2 Stagger: same exact scale/design slumped low, face plate drooped, vulnerable. Frame 3 Enraged: same pose family with hotter rust furnace accent and more aggressive damaged posture. Transparent background, body only, no glow outside outline, no text, no ground/shadow.
+```
+
+## Wreck Quay painted plate
+```
+BACKGROUND: wreck_quay.jpg | 1920x1080 | Wide watercolor environment plate, no characters, no text. Dried seabed railway quay with beached hull ribs, cranes, chains and timber, deep sea-green/rust-brown family. Three depth layers implied by value; gameplay floor area stays dark and quiet, distant silhouettes lower contrast, lamps small cream accents. No amber player-cloak or teal scarf colors.
+```
+
+## Ticket Hall painted plate
+```
+BACKGROUND: ticket_hall.jpg | 1920x1080 | Wide watercolor environment plate, no characters, no text. Buried railway ticket hall with dark green iron arches, stopped clocks, shuttered booths, brass trim and receding concourse silhouettes. Gameplay floor dark/quiet, background low contrast, lamp-white and brass accents restrained. No token cut colors, player amber or player teal.
+```
+
+## Crate/barrel prop sheet
+```
+SHEET: crate_barrel | 2 props, 2 across | 512x256 transparent PNG/WebP. Left: squat railway freight crate, worn timber, iron straps, rust fasteners. Right: compact barrel/drum for the dry-seabed railway, dark wood/iron with brass/rust detail. Watercolor with closed dark ink outline, no labels, no shadow, no ground, large clean gap.
+```
+
+## Signal Reef production plate
+```
+BACKGROUND: signal_reef.jpg | 1920x1080 | Wide watercolor environment plate, no characters/text. Dead coral towers, tall signal masts, hanging lamps and cable silhouettes in violet-grey dusk. Strong vertical rhythm for the shaft region, but the playable foreground remains darker and simpler than characters. Lamp-white accents sparse; no reserved player/token colors.
+```
+
+## Salt Cutting production plate
+```
+BACKGROUND: salt_cutting.jpg | 1920x1080 | Wide watercolor environment plate, no characters/text. White salt canyon cut by railway, stepped cutting walls, salt pans, brine traces, crystal shelves and distant trestles. Pale blue-white slate family with dark value-separated gameplay foreground; no saturated cut/player colors.
+```
+
+## Ticket Hall alternate deep plate
+```
+BACKGROUND: ticket_hall_deep.jpg | 1920x1080 | Alternate deeper Ticket Hall plate for parallax/crop testing: repeating station arches, clocks and booth silhouettes receding into dark green/brass haze, paper texture and watercolor wash, no characters/text, low contrast behind the action.
+```
