@@ -166,3 +166,11 @@ Answers the outside technical audit (/home/claude/audit/tech/AUDIT.md, F1 and F2
 - **Issue 3**: the Timetable intro card picks a spot that covers no player and not the Station Keeper (bottom, top, then the sides; it keeps its spot so it does not jump). It still waits for banners (a taller story card does not matter: any banner holds it back). js/ui/ledger.js `introAt`.
 - **Issue 4**: the Route Board prompt is shorter and stands above the board's own panel (props.js `layoutPrompt`, board only), clear of the Timetable plate. New check `overlays` (card vs player and Keeper over 10 cards, 2 seeds, 3 positions; board prompt vs board, plate and player).
 - `--fast` on the shared tree: 12 failures from in-flight Level edits (r1_tunnel "no room for the r1 loop-back hatch" and its dependants) and load. On a clean HEAD copy plus my two files only `render`, `warden_look` and `world_art` (timing under load) fail.
+
+
+## 2026-11-22: Team 1 — Level Design day brief
+- Signal Reef kept the round-2 wide-shelf `r2_shaft` fix as the canonical safe stair: rest ledges are at most three rows apart; vents and flyers stay off the mandatory climb line.
+- Added four Drill Yard practice rewards for Dash, Wall Grip, Double Jump and Heavy Cut. Reward caches are mechanically gated by the owned move, so co-op boosts cannot falsely complete a lesson.
+- Documented the regional signatures and the 12 main rooms chosen for low/high/secret layering in `docs/LEVEL_DESIGN.md`.
+- Added `tools/checks/region_signature.mjs`: at least three main rooms per region must use that region's mechanic family, and every signature element must exist somewhere in the region.
+- Connector limitation: the GitHub API environment cannot launch Chrome, so `roomlint --strict` and `smoke --fast` were not executed here. The new check is written to the same Playwright contract as the existing checks and should be run by CI/QA before merge.
