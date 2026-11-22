@@ -21,3 +21,11 @@ All entries are **UNTESTED** in this environment.
 - **Hand trace:** each new part has exactly the track's steps-per-bar (r1/r4 16, r2 14, r3 12) and each order is 16 bars. Existing `defineTrack` validation therefore sees matching bar lengths; each layer role is `motif`, satisfying the contract without replacing the pre-existing Line motif.
 - **Expected:** the four region tracks each contain a second, quieter Last Timetable quotation with distinct timbre/mode adaptation.
 - **Test:** `node tools/smoke.mjs audio_contract --serial` plus the normal audio validation/export; listen to r1-r4 for the added quiet quotation. **UNTESTED.**
+
+## Round 3 — bar-length repair
+- **Blocking failure:** music validator dropped r2/r3, cascading into all checks.
+- **Validator traced:** `stepsPerBar(t)=round(sig[0]*16/sig[1])`; `validate()` splits every part on whitespace and rejects `toks.length !== spb`. Layer entries in title/r1-r4 are comma-separated; `lastTimetableLayer()` is the final title layer and therefore needs no following comma.
+- **Hand-count table:** title 4/4 = 16: A=16 B=16 C=16 D=16. r1 4/4 = 16: A=16 B=16. r2 7/8 = 14: A=14 B=14 after adding one terminal hold to each. r3 6/8 = 12: A=12 B=12 after adding one terminal hold to each. r4 4/4 = 16: A=16 B=16.
+- **audio_contract trace:** once all tracks survive `defineTrack`, `M.tracks[id]` exists before `.layers` access; r1-r4 each have bed plus lead/motif, boss_clock remains present, and SFX_NAMES includes pogo from Round 2.
+- **Expected:** no music validation errors; r2/r3 remain registered; `audio_contract` no longer dereferences a missing track.
+- **Test:** full smoke suite, then `node tools/smoke.mjs audio_contract --serial` and audio validation/export. **UNTESTED.**
