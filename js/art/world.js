@@ -242,7 +242,7 @@ const PATTERN = {
 const TER = {
   s: { name: 'salt',  base: '#cfd2c6', wash: ['#f1efe2', '#aeb8bc', '#c9d3d6'], deep: '#8d98a2', ink: '#27303a', cap: '#fbfaf0', capLow: '#b7c0c0' },
   m: { name: 'mud',   base: '#6f563f', wash: ['#84674a', '#523d2d', '#8e7050'], deep: '#33251b', ink: '#1a120c', cap: '#b08d62', capLow: '#7c5f3f' },
-  t: { name: 'tar',   base: '#43323b', wash: ['#5a4351', '#2b1d25', '#6a4a4a'], deep: '#1d1319', ink: '#0d080b', cap: '#d9a98a', capLow: '#8a5f58' },
+  t: { name: 'tar',   base: '#18171a', wash: ['#29272d', '#09090b', '#353139'], deep: '#050506', ink: '#020203', cap: '#d8d1c6', capLow: '#57525a' },
   '>': { name: 'belt', base: '#5b716d', wash: ['#7a928c', '#425651', '#6e8a84'], deep: '#2f403c', ink: '#101a18', cap: '#dce8de', capLow: '#8aa39b' },
   '<': { name: 'belt', base: '#5b716d', wash: ['#7a928c', '#425651', '#6e8a84'], deep: '#2f403c', ink: '#101a18', cap: '#dce8de', capLow: '#8aa39b' },
   j: { name: 'spring', base: '#54605c', wash: ['#74827c', '#3a4642', '#68776f'], deep: '#26302d', ink: '#0f1613', cap: '#f0d675', capLow: '#b0903a' },
@@ -283,11 +283,11 @@ const TERPAT = {
     x.globalAlpha = 0.38; x.strokeStyle = '#46596c'; x.lineWidth = 0.9; x.beginPath(); x.moveTo(X + 5, Y + 12); x.lineTo(X + 13, Y + 17); x.lineTo(X + 9, Y + 25); x.moveTo(X + 22, Y + 8); x.lineTo(X + 18, Y + 19); x.lineTo(X + 27, Y + 24); x.stroke();
     x.globalAlpha = 0.5; x.fillStyle = '#7da4c4'; for (let i = 0; i < 2; i++) { x.beginPath(); x.arc(X + 8 + R() * 16, Y + 22 + R() * 6, 1.2, 0, 6.3); x.fill(); }   // damp specks: it dissolves in water
   },
-  m(x, X, Y, R, K) {                       // mud: wet pits, a glossy sheen, drips
+  m(x, X, Y, R, K) {                       // mud: matte brown with shallow ripple marks
     for (let i = 0; i < 4; i++) { const cx = X + R() * T, cy = Y + 8 + R() * 22, rr = 2 + R() * 4; x.globalAlpha = 0.45; x.fillStyle = '#2a1d14'; x.beginPath(); x.ellipse(cx, cy, rr * 1.6, rr * 0.8, 0, 0, 6.3); x.fill(); x.globalAlpha = 0.28; x.strokeStyle = '#d6b88a'; x.lineWidth = 0.9; x.beginPath(); x.ellipse(cx, cy + 0.8, rr * 1.6, rr * 0.8, 0, 0.3, 2.8); x.stroke(); }
-    x.globalAlpha = 0.2; x.strokeStyle = '#e6caa0'; x.lineWidth = 1.6; x.lineCap = 'round'; for (let i = 0; i < 2; i++) { const yy = Y + 10 + i * 10 + R() * 3; x.beginPath(); x.moveTo(X + 3 + R() * 6, yy); x.quadraticCurveTo(X + 16, yy - 2 - R() * 3, X + 29 - R() * 6, yy + R() * 2); x.stroke(); }
+    x.globalAlpha = 0.16; x.strokeStyle = '#b99267'; x.lineWidth = 1.25; x.lineCap = 'round'; for (let i = 0; i < 2; i++) { const yy = Y + 10 + i * 10 + R() * 3; x.beginPath(); x.moveTo(X + 3 + R() * 6, yy); x.quadraticCurveTo(X + 16, yy - 2 - R() * 3, X + 29 - R() * 6, yy + R() * 2); x.stroke(); }
   },
-  t(x, X, Y, R, K) {                       // tar: glossy black-violet with a warm sheen, bubbles, ember flecks (it burns)
+  t(x, X, Y, R, K) {                       // tar: glossy near-black with a hard reflected highlight, bubbles, ember flecks
     x.globalAlpha = 0.5; x.fillStyle = '#9a6a6a'; x.beginPath(); x.ellipse(X + 9 + R() * 6, Y + 9, 7, 2.2, -0.2, 0, 6.3); x.fill();
     x.globalAlpha = 0.34; x.fillStyle = '#e0a27a'; x.beginPath(); x.ellipse(X + 22 + R() * 4, Y + 18 + R() * 6, 4, 1.6, 0.2, 0, 6.3); x.fill();
     for (let i = 0; i < 3; i++) { const cx = X + 4 + R() * 24, cy = Y + 10 + R() * 18, rr = 1.5 + R() * 2.2; x.globalAlpha = 0.5; x.strokeStyle = '#c99a86'; x.lineWidth = 0.9; x.beginPath(); x.arc(cx, cy, rr, 0, 6.3); x.stroke(); }
