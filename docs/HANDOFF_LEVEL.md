@@ -17,3 +17,11 @@ All changes below are **UNTESTED** in this environment.
 - **Hand trace:** `region_signature` counts a main room when its flattened grid contains any of `m/Q/c`, and separately requires at least one room for each character. After this change r1 has signature characters in `r1_gangway`, `r1_wreck`, and `r1_dock`; `r1_dock` supplies `c` and both `r1_wreck`/`r1_dock` supply `Q`. The new mud/cart are on the broad permanent floor; no exit or trunk moved.
 - **Expected:** r1 reports at least 3 signature main rooms and no missing mud/cart/crumble.
 - **Test:** `node tools/smoke.mjs region_signature --serial`, then traverse `r1_wreck` using run+jump only.
+
+## Round 2 — Salt Cutting conveyor
+- **Failing check addressed:** `region_signature` r3.
+- **Change:** added an existing `>` conveyor floor segment to `r3_brines`.
+- **File / function:** `js/content/rooms_r3.js`, `r3_brines`.
+- **Hand trace:** the check requires at least one `<` or `>` in an r3 main and salt `s`; `r3_brines` already contains salt and now contains `>`. The conveyor replaces permanent floor under an open lane and `>` is solid terrain, so the run+jump route remains continuous.
+- **Expected:** r3 no longer reports missing conveyor.
+- **Test:** `node tools/smoke.mjs region_signature --serial`; walk across the new Brine Flats belt and confirm the exit remains reachable.

@@ -165,6 +165,7 @@ G.defineRoom({
   // 1. Brine Flats — readable introduction to slippery salt. Salt sits over permanent floor, so Wet never creates a death trap.
   wide('r3_brines',({fill,put})=>{
     fill(14,14,5,15,'s'); fill(14,14,22,33,'s'); fill(14,14,41,52,'s');
+    fill(15,15,34,38,'>');
     fill(12,14,17,19,'#'); fill(13,14,35,37,'#');
     fill(10,10,9,15,'='); fill(9,9,26,32,'='); fill(10,10,44,50,'=');
     put(13,12,'E'); put(13,29,'E'); put(13,47,'E');
