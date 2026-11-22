@@ -198,6 +198,7 @@ defineTrack({ id: 'r1', title: 'Hulls and Chains', bpm: 108, sig: [4, 4], bars: 
       a: '. . B4 . E5 . . G5 . . F#5 . E5 . . .', b: '. . G4 . C5 . . E5 . . D5 . C5 . . .', c: '. . D5 . G5 . . B5 . . A5 . G5 . . .', d: '. . A4 . D5 . . F#5 . . E5 . D5 . A4 .',
       e: '. B4 . E5 . G5 . B5 . A5 . G5 . E5 . .', f: '. G4 . C5 . E5 . G5 . F5 . E5 . C5 . .', g: '. D5 . G5 . B5 . D6 . C6 . B5 . G5 . .', h: '. A4 . D5 . F#5 . A5 . G5 . F#5 . D5 . .' }, order: '____abcdefghabcd' },
   { id: 'line', role: 'motif', inst: 'bell', vol: 0.3, pan: -0.3, rev: 0.6, dly: 0.3, parts: { a: 'E4 - - - - - B4 - A4 - G4 - F#4 - - -', b: 'G4 - - - F#4 - E4 - - - - - B3 - - -' }, order: '______ab______ab' },
+  { id:'last_timetable', role:'motif', inst:'pluck', vol:.18, parts:{A:'E4 - - B4 - G4 - F#4 - - D4 - E4 - - -',B:'G4 - - B4 - A4 - F#4 - E4 - - B3 - - -'}, order:'________ABABABAB' },
   tenseLayer(16, 'E2', 'F3')
 ] });
 
@@ -209,6 +210,7 @@ defineTrack({ id: 'r2', title: 'Lamps in the Dusk', bpm: 132, sig: [7, 8], bars:
       A: 'F#5 . A5 . C#6 . A5 . . F#5 . E5 . .', B: 'B4 . D#5 . F#5 . D#5 . . B4 . A4 . .', C: 'E5 . G#5 . B5 . G#5 . . E5 . D5 . .', D: 'C#5 . E5 . G#5 . E5 . . C#5 . B4 . .' }, order: '____ABCDABCDABCD' },
   { id: 'perc', role: 'perc', inst: 'drums', vol: 0.4, parts: { A: 'k . . . h . . . r . . h . h', B: 'k . . . h . . . r . r . r .' }, order: '________AAAAAAAB' },
   { id: 'line', role: 'motif', inst: 'epiano', vol: 0.35, pan: -0.25, rev: 0.5, parts: { a: 'F#4 - - - - - C#5 - B4 - A4 - G#4 -', b: 'A4 - - - G#4 - F#4 - - - - - C#4 -' }, order: '______ab______ab' },
+  { id:'last_timetable', role:'motif', inst:'bell', vol:.17, parts:{A:'F#4 - - C#5 - A4 - G#4 - E4 - F#4 -',B:'A4 - - C#5 - B4 - G#4 - F#4 - - C#4 -'}, order:'________ABABABAB' },
   tenseLayer(14, 'F#2', 'G3')
 ] });
 
@@ -222,6 +224,7 @@ defineTrack({ id: 'r3', title: 'White Canyon', bpm: 92, sig: [6, 8], bars: 16, k
       A: 'A4 - E5 - C#5 - G#4 - E5 - C#5 -', B: 'B4 - F#5 - D#5 - B4 - F#5 - D#5 -', C: 'F#4 - C#5 - A4 - E5 - C#5 - A4 -', D: 'E4 - B4 - G#4 - D#5 - B4 - G#4 -' }, order: '____ABCDABCDABCD' },
   { id: 'perc', role: 'perc', inst: 'drums', vol: 0.3, parts: { A: 'k . . . . . . . h . . .' }, order: '________AAAAAAAA' },
   { id: 'line', role: 'motif', inst: 'lead', vol: 0.3, rev: 0.7, parts: { a: 'A3 - - - - - E4 - D#4 - C#4 -', b: 'C#4 - - - B3 - A3 - - - - -' }, order: '______ab______ab' },
+  { id:'last_timetable', role:'motif', inst:'arp', vol:.16, parts:{A:'A4 - - E5 - C#5 - B4 - G#4 -',B:'C#5 - - E5 - D#5 - B4 - A4 -'}, order:'________ABABABAB' },
   tenseLayer(12, 'A1', 'Bb2')
 ] });
 
@@ -235,6 +238,7 @@ defineTrack({ id: 'r4', title: 'Stopped Clocks', bpm: 76, sig: [4, 4], bars: 16,
   { id: 'lead', role: 'lead', inst: 'bell', vol: 0.38, pan: 0.2, rev: 0.6, dly: 0.4, parts: {
       a: 'G4 - - - - - - - Eb4 - - - D4 - - -', b: 'C5 - - - - - - - Bb4 - - - Ab4 - - -', c: 'G4 - - - Bb4 - - - C5 - - - Bb4 - - -', d: 'D5 - - - - - - - C5 - - - Bb4 - - -' }, order: '________abcdabcd' },
   { id: 'line', role: 'motif', inst: 'lead', vol: 0.28, pan: 0.3, rev: 0.6, parts: { a: 'C4 - - - - - G4 - F4 - Eb4 - D4 - - -', b: 'Eb4 - - - D4 - C4 - - - - - G3 - - -' }, order: '______ab______ab' },
+  { id:'last_timetable', role:'motif', inst:'epiano', vol:.18, parts:{A:'C4 - - G4 - Eb4 - D4 - - Bb3 - C4 - - -',B:'Eb4 - - G4 - F4 - D4 - C4 - - G3 - - -'}, order:'________ABABABAB' },
   tenseLayer(16, 'C2', 'Db3')
 ] });
 

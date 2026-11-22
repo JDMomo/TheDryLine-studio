@@ -15,3 +15,9 @@ All entries are **UNTESTED** in this environment.
 - **Hand trace:** `Player.slashLanded` is called by combat only when the slash connects with boss/enemy/spike; its down branch applies `vy=-POGO_V`. Audio already wraps this method and sets `_audPogo` to suppress the normal jump chirp. The new call is inside that same successful-down-hit wrapper. `G.audio.SFX_NAMES` is `Object.keys(SFX)`, so adding the entry makes `audio_contract` find `pogo`.
 - **Expected:** one pogo chirp per successful down-slash bounce; no chirp on an air down-slash that hits nothing.
 - **Test:** `node tools/smoke.mjs audio_contract --serial` and the existing audio check; in game, down-slash an enemy and a spike and listen for the short upward chirp. **UNTESTED.**
+
+## Next — Last Timetable in all four regions
+- **Change:** added note-data-only `last_timetable` motif layers to r1-r4, adapted to each track's meter/key and a different instrument voice: r1 pluck, r2 bell, r3 arp, r4 epiano. No audio engine change.
+- **Hand trace:** each new part has exactly the track's steps-per-bar (r1/r4 16, r2 14, r3 12) and each order is 16 bars. Existing `defineTrack` validation therefore sees matching bar lengths; each layer role is `motif`, satisfying the contract without replacing the pre-existing Line motif.
+- **Expected:** the four region tracks each contain a second, quieter Last Timetable quotation with distinct timbre/mode adaptation.
+- **Test:** `node tools/smoke.mjs audio_contract --serial` plus the normal audio validation/export; listen to r1-r4 for the added quiet quotation. **UNTESTED.**
