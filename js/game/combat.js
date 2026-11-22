@@ -174,7 +174,7 @@ const combat = G.combat = {
     if (b && b.active()) {
       const sp = st.cls ? b.spotAt(st) : null;
       if (sp) { if (!(st.seen && st.seen.has(sp))) { if (st.seen) st.seen.add(sp); b.hitSpot(sp, st); res = 'spot'; } }
-      else if (U.circleRect(st.x, st.y, st.r, b.rect()) && !(st.seen && st.seen.has(b))) { if (st.seen) st.seen.add(b); b.damage(st.dmg || 0); res = 'body'; }
+      else if (b.hitsCircle(st.x, st.y, st.r) && !(st.seen && st.seen.has(b))) { if (st.seen) st.seen.add(b); b.damage(st.dmg || 0); res = 'body'; }
     }
     for (const e of room.enemies) {
       if (e.dead || (st.seen && st.seen.has(e)) || !U.circleRect(st.x, st.y, st.r, e.rect())) continue;
@@ -189,14 +189,14 @@ const combat = G.combat = {
   // True if a shot is in contact with the boss, its fare slot of the shot's cut, or an enemy.
   touching(s) {
     const room = G.rooms.current, b = room.boss;
-    if (b && b.active() && (U.circleRect(s.x, s.y, s.r, b.rect()) || (s.cls && b.spotAt(s)))) return true;
+    if (b && b.active() && (b.hitsCircle(s.x, s.y, s.r) || (s.cls && b.spotAt(s)))) return true;
     return room.enemies.some(e => !e.dead && U.circleRect(s.x, s.y, s.r, e.rect()));
   },
   // A slash: test the boss body, enemies, cuttable hostile shots and (for a down slash) spikes.
   melee(p, s, rect) {
     const room = G.rooms.current, b = room.boss, dmg = (s.heavy ? 32 : 13) * G.run.mods.dmg;
-    if (b && b.active() && !s.hit.boss && U.overlap(rect, b.rect())) {
-      const q = b.rect();
+    if (b && b.active() && !s.hit.boss && b.hitsRect(rect)) {
+      const q = b.hitsRect(rect) || b.rect();
       s.hit.boss = true; b.damage(dmg);
       p.slashLanded(s, U.clamp((rect.x0 + rect.x1) / 2, q.x0, q.x1), U.clamp((rect.y0 + rect.y1) / 2, q.y0, q.y1), true);
     }

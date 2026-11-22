@@ -100,7 +100,7 @@ function frame(now) {
     if (G.fx.hitstop > 0 && G.state === 'play') { G.fx.hitstop -= dt; alpha = 1 + Math.min(0, acc) / C.STEP; }
     else {
       acc += dt;
-      while (acc > 0) { if (G.state === 'play') G.interp.capture(); step(C.STEP); acc -= C.STEP; }
+      while (acc > 0) { if (G.state === 'play') G.interp.capture(); const simStep = (G.fx.slow > 0 ? C.STEP * G.fx.slowScale : C.STEP); step(simStep); acc -= C.STEP; }
       alpha = G.state === 'play' ? 1 + acc / C.STEP : 1;
       if (acc > 0) acc = 0;
     }

@@ -5,8 +5,10 @@
 const G = window.G, C = G.C, M = C.MOVE, U = G.util;
 let lookX = 0, panY = 0, panT = 0;
 G.cam = {
-  x: 0, y: 0,
+  x: 0, y: 0, bossCue: null,
+  cue(boss, t = 1.5) { this.bossCue = { boss, t, max: t }; },
   follow(dt, tx, ty, snap) {
+    if (this.bossCue && this.bossCue.t > 0 && this.bossCue.boss) { this.bossCue.t -= dt; tx = this.bossCue.boss.x; ty = this.bossCue.boss.y - this.bossCue.boss.h * 0.45; snap = false; if (this.bossCue.t <= 0) this.bossCue = null; }
     const maxX = Math.max(0, G.tiles.cols * C.T - C.W), maxY = Math.max(0, G.tiles.rows * C.T - C.H);
     const live = (G.players || []).filter(p => !p.down);
     let dir = 0, want = 0;
