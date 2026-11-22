@@ -15,3 +15,13 @@ All changes are **UNTESTED** here.
 - **Hand trace:** `G.debug.newRun(seed)` builds `G.run.graph`; `drawTokens()` stores every drawn token id in `graph.draw.all`; `rollChart()` stores each Warden's cut array in `graph.chart`. The check counts non-null supply and sums chart cut counts, buckets every seed exactly once, and asserts only that the three buckets total 200.
 - **Expected:** prints exactly-enough / too-few / too-many rows for seeds 1–200 without treating any distribution as a failure.
 - **Test:** `node tools/smoke.mjs token_coverage --serial`. **UNTESTED.**
+
+## Round 4 — three-seed token-coverage hand trace
+No game/test execution was used for these three rows. I traced only the **counts** through `rollChart()` and `drawTokens()`.
+- `rollChart` gives every region in its input three cuts. The run has five Warden regions, so the check's `need` sum is 5 × 3 = **15**.
+- `drawTokens` draws one token for each plinth-bearing region (four regional guarded plinths), then two trunks and one ticket token: **4 + 2 + 1 = 7** without a start-token Timetable rule. The RNG changes token identities/cuts, not this source count while the pool is nonempty.
+- Seed 1: supply **7**, need **15** → **too few**.
+- Seed 2: supply **7**, need **15** → **too few**.
+- Seed 3: supply **7**, need **15** → **too few**.
+- This is intentionally **not tuning advice**: the current reporting check compares total drawn token count to all 15 chart slots, even though a normal route may not intend to punch every slot. Per brief, no balance change was made.
+- Test: run `token_coverage` and compare seeds 1–3 to the hand-count rows. **UNTESTED.**
