@@ -171,7 +171,8 @@ defineTrack({ id: 'title', title: 'The Line Waits', bpm: 84, sig: [4, 4], bars: 
       e: 'D5 - - - - - A5 - G5 - F5 - E5 - - -', f: 'F5 - - - E5 - D5 - - - - - A4 - - -', g: 'D5 - - - - - A5 - B5 - C6 - A5 - - -', h: 'G5 - - - F5 - E5 - D5 - - - - - - -' }, order: '____abcdabcdefgh' },
   { id: 'arp', role: 'arp', inst: 'arp', vol: 0.3, pan: -0.25, rev: 0.4, dly: 0.35, parts: {
       A: 'D4 - F4 - A4 - F4 - D4 - F4 - A4 - F4 -', B: 'G4 - B4 - D5 - B4 - G4 - B4 - D5 - B4 -', C: 'E4 - G4 - C5 - G4 - E4 - G4 - C5 - G4 -', D: 'A3 - C4 - E4 - C4 - A3 - C4 - E4 - C4 -' }, order: '________ABCDABCD' },
-  { id: 'perc', role: 'perc', inst: 'drums', vol: 0.4, parts: { A: 'k . h . r . h . k . h . r . h .', B: 'k . h . r . h . k . h . r . r k' }, order: '________AAAAAAAB' }
+  { id: 'perc', role: 'perc', inst: 'drums', vol: 0.4, parts: { A: 'k . h . r . h . k . h . r . h .', B: 'k . h . r . h . k . h . r . r k' }, order: '________AAAAAAAB' },
+  lastTimetableLayer()
 ] });
 
 // ---- hub: The Junction (F lydian, 3/4, 96, 16 bars). The Line as a music-box waltz.
@@ -184,8 +185,7 @@ defineTrack({ id: 'hub', title: 'The Junction', bpm: 96, sig: [3, 4], bars: 16, 
   { id: 'chords', role: 'arp', inst: 'epiano', vol: 0.35, pan: -0.2, rev: 0.4, parts: {
       A: '. . . . F4+A4+C5 - - - F4+A4+C5 - - -', B: '. . . . D4+F4+A4 - - - D4+F4+A4 - - -', C: '. . . . Bb3+D4+F4 - - - Bb3+D4+F4 - - -', D: '. . . . C4+E4+G4 - - - C4+E4+G4 - - -' }, order: '____ABCDABCDABCD' },
   { id: 'fare', role: 'motif', inst: 'bell', vol: 0.35, pan: 0.3, rev: 0.6, dly: 0.4, parts: { A: 'F5 - A5 - C6 - A5 - F6 - - -' }, order: '_______A_______A' },
-  { id: 'perc', role: 'perc', inst: 'drums', vol: 0.3, parts: { A: 'k . . . h . . . h . . .' }, order: '________AAAAAAAA' },
-  lastTimetableLayer()
+  { id: 'perc', role: 'perc', inst: 'drums', vol: 0.3, parts: { A: 'k . . . h . . . h . . .' }, order: '________AAAAAAAA' }
 ] });
 
 // ---- r1 Wreck Quay: Hulls and Chains (E minor, 4/4, 108, swing, 16 bars)
