@@ -17,7 +17,7 @@ const NAMES = {
 };
 
 const INTROS = {
-  r1:['Wreck Quay','The tide left first. The tolls did not.'],
+  r1:['Wreck Quay','The tide left first. The tolls did not. A fare token opens a matching slot; punching it spends that token for the run.'],
   r2:['Signal Reef','Dead lamps still repeat a departure code no train can answer.'],
   r3:['Salt Cutting','The old sea lies here as stone. The rails cut straight through it.'],
   r4:['Ticket Hall','Every window is closed. Every machine still asks for fare.'],
@@ -72,7 +72,7 @@ const story=G.story={
       const n=['r1','r2','r3','r4'].filter(k=>G.run.beaten[k]).length;
       if (n!==s.hubBeat) {
         s.hubBeat=n;
-        if(n===0) add('hub:0','The Last Timetable','Five routes leave the Junction, every one still open. Walk east along the yard to Wreck Quay for the gentlest line; the high viaduct leads to the order they all still obey.',true,'guide');
+        if(n===0) add('hub:0','The Last Timetable','Five routes leave the Junction, every one still open. Tokens punch matching fare slots and are void when spent. The Long Clock borrows one attack from every Warden you leave active. Wreck Quay is the gentlest first line.',true,'guide');
         else if(n===1) add('hub:1','The Junction wakes','One line has gone quiet. Somewhere under the platform, a relay clicks to the next page.',true);
         else if(n===2) add('hub:2','Half the line is silent','The board no longer looks like a challenge. It looks like a chain of messages that failed to arrive.',true);
         else if(n===3) add('hub:3','One Warden remains','Three old machines have released their orders. The Terminus gate sounds different now.',true);
