@@ -80,6 +80,7 @@ if (!G.combat.slashBy && G.combat.melee) {
 /* ---------- 1. Strider (ballast_crab): light rusher; patrol -> claw tell -> committed scuttle -> punishable recovery ---------- */
 G.defineEnemy({
   id: 'ballast_crab', name: 'Strider', hp: 26, w: 30, h: 22, touch: 1, shards: [2, 5],
+  mat: ["stone","brittle"],
   init(e) { e.face = G.run.rng.chance(0.5) ? 1 : -1; e.cool=0.7+rr(); e.set('patrol',0); e.harmless=true; },
   update(e,dt) {
     e.cool-=dt; const p=e.target();
@@ -128,6 +129,7 @@ G.defineEnemy({
 /* ---------- 2. Boiler (brine_spout): artillery + close pressure vent; both tell, fire, then recover ---------- */
 G.defineEnemy({
   id: 'brine_spout', name: 'Boiler', hp: 30, w: 26, h: 30, touch: 1, shards: [3, 5],
+  mat: ["wet"],
   init(e) { e.set('idle', 0.9 + rr() * 0.8); e.harmless=true; },
   update(e) {
     e.vx = 0; const p = e.target();
@@ -182,6 +184,7 @@ G.defineEnemy({
 /* ---------- 3. Scrapper (turnstile): armored lane holder; shielded advance -> shove tell -> charge -> open recovery ---------- */
 G.defineEnemy({
   id: 'turnstile', name: 'Scrapper', hp: 44, w: 34, h: 40, touch: 1, shards: [3, 5], heavy: true,
+  mat: ["metal"],
   init(e) { e.face = G.run.rng.chance(0.5) ? 1 : -1; e.set('walk', 0); e.cool = 1; e.harmless=true; },
   guard(e, d, fromX) {
     const s = G.combat.slashBy;
@@ -244,6 +247,7 @@ G.defineEnemy({
 /* ---------- 4. Rivet (signal_gull): hovers, then swoops in an arc ---------- */
 G.defineEnemy({
   id: 'signal_gull', name: 'Rivet', hp: 22, w: 30, h: 22, touch: 1, shards: [2, 4], flying: true, gravity: false,
+  mat: ["metal"],
   init(e) { e.off = rr() < 0.5 ? -100 : 100; e.set('hover', 1.2 + rr()); e.bob = rr() * 6; e.harmless=true; },
   update(e, dt) {
     const p = e.target(), top = e.h + 40, bot = tiles.rows * T - 40;
@@ -301,6 +305,7 @@ G.defineEnemy({
 /* ---------- 5. Lamp Wisp: slow flyer that drifts at the player; pops (0.45 s warning) when killed ---------- */
 G.defineEnemy({
   id: 'lamp_wisp', name: 'Lamp Wisp', hp: 20, w: 24, h: 24, touch: 1, shards: [2, 4], flying: true, gravity: false,
+  mat: ["flammable"],
   init(e) { e.bob = rr() * 6; e.set('drift', 0); },
   // The killing blow does not kill yet: the wisp swells for 0.45 s, then bursts and dies.
   guard(e, d) {
@@ -342,6 +347,7 @@ G.defineEnemy({
 /* ---------- 6. Brine Toad: crouches, hops toward players, splashes on landing ---------- */
 G.defineEnemy({
   id: 'brine_toad', name: 'Brine Toad', hp: 34, w: 32, h: 24, touch: 1, shards: [2, 5],
+  mat: ["wet"],
   init(e) { e.face = G.run.rng.chance(0.5) ? 1 : -1; e.set('rest', 0.5 + rr()); },
   update(e) {
     const p = e.target();
@@ -384,6 +390,7 @@ G.defineEnemy({
 /* ---------- 7. Gearling (handcar): pump trolley; winds up (pumping, rust flash), dashes along the floor, then rests ---------- */
 G.defineEnemy({
   id: 'handcar', name: 'Gearling', hp: 56, w: 46, h: 30, touch: 1, shards: [4, 5], heavy: true,
+  mat: ["metal","heavy"],
   init(e) { e.face = G.run.rng.chance(0.5) ? 1 : -1; e.set('roll', 0); e.cool = 1.5; },
   update(e, dt) {
     e.cool -= dt;
@@ -432,6 +439,7 @@ G.defineEnemy({
 /* ---------- 8. Hanging Lamp: hangs from the ceiling above its spawn, drops when a player passes under, then burns out ---------- */
 G.defineEnemy({
   id: 'hanging_lamp', name: 'Hanging Lamp', hp: 20, w: 24, h: 30, touch: 1, shards: [2, 3], gravity: false, ceiling: true,
+  mat: ["metal","brittle"],
   init(e) {
     const c = Math.floor(e.x / T); let r = Math.floor((e.y - 2) / T);
     while (r >= 0 && !tiles.solid(c, r)) r--;
@@ -478,6 +486,7 @@ G.defineEnemy({
 /* ---------- 9. Sapper: bomb-like demolition unit; plants a clearly warned charge, then backs off ---------- */
 G.defineEnemy({
   id: 'sapper', name: 'Sapper', hp: 30, w: 30, h: 28, touch: 1, shards: [3, 5], staticArt:{w:48,h:42},
+  mat: ["metal","flammable"],
   staticFx(e,ctx){if(e.state==='wind'){ctx.save();ctx.translate(e.x,e.y);ctx.scale(e.face,1);warnRing(ctx,-16,18,e.prog());ctx.restore();}},
   init(e) { e.face = G.run.rng.chance(0.5) ? 1 : -1; e.cool = 1.1 + rr(); e.set('walk', 0); },
   update(e, dt) {
