@@ -21,3 +21,9 @@ All entries are **UNTESTED** in this environment unless the studio lead records 
 - **Hand trace:** `G.MATERIALS` in `js/game/combat.js` defines heavy, metal, flammable, wet, slick, brittle, magnetic, spark. The prior check incorrectly demanded unsupported `stone` and `cloth`; those could never be valid material vocabulary. I did not change any pre-existing check. The corrected check now asks Strider for brittle, Harvester for metal+wet, Mirage for slick, all defined tags; both enemy definitions now supply the requested arrays.
 - **Expected:** `enemy_materials` finds every requested tag and every region still has at least one tagged cast member.
 - **Test:** `node tools/smoke.mjs enemy_materials --serial`. **UNTESTED.**
+
+## Round 2 — hit-stop stacking trace
+- **Review item addressed:** confirm new enemy hit-stop does not add to existing slash hit-stop.
+- **Code traced:** `combat.melee()` calls `Enemy.damage()`, then `Player.slashLanded()`. `Enemy.damage()` writes `fx.hitstop = Math.max(fx.hitstop, 0.05)`. `slashLanded()` calls `fx.jolt(...)`; `fx.jolt()` also writes `fx.hitstop = Math.max(fx.hitstop, stop)`.
+- **Why no code change:** both paths use max, never addition. A normal slash therefore resolves to the larger requested value; heavy slash likewise keeps its larger 0.09 request.
+- **Test:** slash one enemy normally and one with Heavy Cut while inspecting `G.fx.hitstop`; verify it is max-request behavior, not 0.05 plus the slash request. **UNTESTED.**
