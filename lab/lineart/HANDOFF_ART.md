@@ -30,3 +30,7 @@ All browser visual results are **UNTESTED** here; repository inputs and code pat
 - Committed `passes/pass_73.png`, rendered from the same authored geometry and hatch/value algorithm in the local raster proof port. The browser engine remains the authoritative live implementation.
 - **File-integrity re-read:** engine begins with IIFE, G/TAU declaration, then PAL declaration on separate physical lines; no literal `\\n` token was introduced by the write.
 - Test: open `index.html` and compare its live 1x/4x renders to `passes/pass_73.png`; inspect painted comparison after decoding refs. **UNTESTED in game.**
+
+## Round 4 — decoded painted files committed
+- Committed real PNG siblings for all three repository reference payloads: `_refs/player_idle.png`, `strider_move.png`, `gearling_move.png`. The compare page's relative paths now exist without requiring a pre-step.
+- Each PNG blob is decoded directly from its existing branch `.b64` text via GitHub base64 blob creation; no redraw/substitution.
