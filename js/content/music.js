@@ -153,6 +153,15 @@ const music = G.music = {
 
 const D = '. . . . . . . . . . . . . . . .';
 
+// Last Timetable: new four-bar railway leitmotif; data only, no engine changes.
+const LAST_TIMETABLE = {
+  A: 'D4 - - A4 - F4 - E4 - - C4 - D4 - - -',
+  B: 'F4 - - A4 - G4 - E4 - D4 - - A3 - - -',
+  C: 'D4 - F4 - A4 - C5 - A4 - G4 - F4 - E4 -',
+  D: 'E4 - - G4 - F4 - D4 - C4 - - D4 - - -'
+};
+const lastTimetableLayer = () => ({ id:'last_timetable', role:'motif', inst:'bell', vol:0.24, pan:-0.12, rev:0.55, dly:0.28, parts:LAST_TIMETABLE, order:'____________ABCD' });
+
 // ---- title: The Line Waits (D dorian, 4/4, 84, 16 bars)
 defineTrack({ id: 'title', title: 'The Line Waits', bpm: 84, sig: [4, 4], bars: 16, key: 'D dorian', mood: 'a lamp left on; warm, unhurried, a little sad', layers: [
   { id: 'bed', role: 'bed', inst: 'pad', vol: 0.5, rev: 0.5, parts: { A: chord('D3+A3+F4', 16), B: chord('G3+B3+D4', 16), C: chord('C3+G3+E4', 16), D: chord('A2+E3+C4', 16) }, order: 'ABCD'.repeat(4) },
@@ -162,7 +171,8 @@ defineTrack({ id: 'title', title: 'The Line Waits', bpm: 84, sig: [4, 4], bars: 
       e: 'D5 - - - - - A5 - G5 - F5 - E5 - - -', f: 'F5 - - - E5 - D5 - - - - - A4 - - -', g: 'D5 - - - - - A5 - B5 - C6 - A5 - - -', h: 'G5 - - - F5 - E5 - D5 - - - - - - -' }, order: '____abcdabcdefgh' },
   { id: 'arp', role: 'arp', inst: 'arp', vol: 0.3, pan: -0.25, rev: 0.4, dly: 0.35, parts: {
       A: 'D4 - F4 - A4 - F4 - D4 - F4 - A4 - F4 -', B: 'G4 - B4 - D5 - B4 - G4 - B4 - D5 - B4 -', C: 'E4 - G4 - C5 - G4 - E4 - G4 - C5 - G4 -', D: 'A3 - C4 - E4 - C4 - A3 - C4 - E4 - C4 -' }, order: '________ABCDABCD' },
-  { id: 'perc', role: 'perc', inst: 'drums', vol: 0.4, parts: { A: 'k . h . r . h . k . h . r . h .', B: 'k . h . r . h . k . h . r . r k' }, order: '________AAAAAAAB' }
+  { id: 'perc', role: 'perc', inst: 'drums', vol: 0.4, parts: { A: 'k . h . r . h . k . h . r . h .', B: 'k . h . r . h . k . h . r . r k' }, order: '________AAAAAAAB' },
+  lastTimetableLayer()
 ] });
 
 // ---- hub: The Junction (F lydian, 3/4, 96, 16 bars). The Line as a music-box waltz.
