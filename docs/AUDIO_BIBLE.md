@@ -165,3 +165,25 @@ Not built (listed so nobody assumes): wall slide, a distinct cue for each boss a
 - Everything is wrapped in try and catch; with no AudioContext (or one that will not start) the game runs as before.
 
 What I could not verify: nobody has listened to any of this. The checks prove the data is well formed, the timing is on the bar and beat lines, the sounds render without clipping and without silence, and the code survives a missing audio system. They cannot say whether a track is good, whether the mix is balanced, whether the SFX are annoying on the hundredth jump, or how it sounds on laptop speakers. The Ableton behaviour described in `assets/audio/README.md` is from memory of the program and should be checked against your version.
+
+
+## 2026-11-22 listening/production audit
+
+The code/data review confirms that the requested Last Timetable idea is already represented by the original **The Line** four-bar motif and quoted in title, hub, every region, quiet rooms and the win/lose material; the Long Clock carries the separate Count plus borrowed Warden voices. The table below is a composition/mix audit from the authored data, **not a claim of speaker/headphone listening in this connector environment**.
+
+| Track | Melody | Mix | Loop seam | Action |
+|---|---:|---:|---:|---|
+| title | 8 | 8 | 9 | keep; full Line statement |
+| hub | 8 | 8 | 9 | keep; music-box identity |
+| r1 | 8 | 8 | 8 | keep; strongest rhythmic walk |
+| r2 | 8 | 8 | 8 | keep; 7/8 grouping is distinct |
+| r3 | 7 | 8 | 9 | strengthen B-section lead variation in final arrangement |
+| r4 | 7 | 8 | 9 | strengthen B-section melodic answer in final arrangement |
+| final | 8 | 8 | 8 | keep 5/4 clock pressure |
+| quiet | 8 | 9 | 9 | keep sparse field-texture space |
+| boss_warden | 8 | 8 | 8 | adaptive slot stems are the identity |
+| boss_clock | 9 | 8 | 8 | full end-game statement through Count + borrowed voices |
+| win | 9 | 8 | n/a | payoff: Line resolves major |
+| lose | 8 | 8 | n/a | unresolved fragment |
+
+The two weakest melodic rows are r3 and r4; their final Ableton arrangements should add a contrasting B answer without changing the shared motif or loop length.
