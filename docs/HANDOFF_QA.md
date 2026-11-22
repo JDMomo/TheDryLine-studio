@@ -24,3 +24,7 @@ All entries are **UNTESTED** in this environment.
 ## Round 3 — known issues
 - Replaced Round-2 issue list with the lead's Round-3 merged-build state: audio blocker, engine presentation check, two level items, world-art merge/readability items, line-art review gate, and the three green teams.
 - Test: compare to Round-3 studio-lead report; no runtime assertion. **UNTESTED as integrated state.**
+
+## Round 4 — known issues refresh
+- Replaced Round-3 list with the lead's Round-4 blockers and explicitly separated test/tooling failures from player-facing regressions.
+- Test: compare against Round-4 review after merging branch heads. **UNTESTED as integrated state.**
