@@ -233,8 +233,8 @@ function boxFree(x, y, w, h) {
 }
 
 function cloak(ctx, alpha, color) {
-  ctx.globalAlpha = alpha; ctx.fillStyle = color;
-  ctx.beginPath(); ctx.moveTo(-12, 0); ctx.lineTo(-9, -27); ctx.quadraticCurveTo(-1, -47, 9, -29); ctx.lineTo(12, 0); ctx.closePath(); ctx.fill();
+  ctx.globalAlpha = alpha; ctx.fillStyle = color; ctx.strokeStyle = G.art.playerOutline; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(-12, 0); ctx.lineTo(-9, -27); ctx.quadraticCurveTo(-1, -47, 9, -29); ctx.lineTo(12, 0); ctx.closePath(); ctx.stroke(); ctx.fill();
   ctx.globalAlpha = 1;
 }
 
@@ -279,7 +279,9 @@ G.art.define('player', (ctx, o) => {
   // Watercolor player (F2 toggles; player 1 only): strips replace the code-drawn body and scarf. Missing files fall through to the code-drawn player.
   if (stripsOn(p)) {
     const [name, frame] = pickStrip(p);
-    G.art.drawFrame(G.art.hasStrip('player_' + name) ? 'player_' + name : 'player_idle', ctx, frame, { x: p.x, y: p.y, face: p.face, h: 68, foot: 4 });
+    const stripId = G.art.hasStrip('player_' + name) ? 'player_' + name : 'player_idle';
+    for (const [dx,dy] of [[-1.5,0],[1.5,0],[0,-1.5],[0,1.5]]) G.art.drawSilhouette(stripId, ctx, frame, { x:p.x+dx, y:p.y+dy, face:p.face, h:68, foot:4, color:G.art.playerOutline, alpha:0.8 });
+    G.art.drawFrame(stripId, ctx, frame, { x: p.x, y: p.y, face: p.face, h: 68, foot: 4 });
     if (p.index > 0 && !p.down) {                                                  // players 2 to 4: a small marker in their colour above the head
       const my = p.y - 68 - 12 + Math.sin(G.time * 4 + p.index) * 1.5;
       ctx.globalAlpha = 1; ctx.fillStyle = p.color; ctx.strokeStyle = '#0a1110'; ctx.lineWidth = 2; ctx.lineJoin = 'round';

@@ -90,6 +90,7 @@ function regionScenery(ctx, region, pal, camX, time) {
 }
 
 const art = G.art = {
+  playerOutline: '#fff3c4',
   define(id, painter) { painters[id] = painter; },
   // opts: { x, y, w, h, face, anchor: 'feet' | 'center', ... anything the painter wants }.
   // A sprite is drawn with its bottom centre (or centre) on x, y. Returns false if nothing is registered.

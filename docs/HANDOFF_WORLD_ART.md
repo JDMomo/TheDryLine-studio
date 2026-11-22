@@ -17,3 +17,9 @@ All changes are **UNTESTED** here.
 - Contrast sampler reads `#game` after `requestAnimationFrame`, not palette helpers. It chooses dark player-box pixels and a 6–10 game-pixel exterior ring, then uses the standard WCAG 0.04045 transfer and 0.2126/0.7152/0.0722 luminance weights.
 - Tar/mud code is likewise present: mud #6f563f matte/low-contrast ripples; tar #18171a with #050506 deep pooling and pale hard highlight.
 - Test after merging this branch head: `node tools/smoke.mjs art_contrast --serial`; inspect mud/tar in-game. **UNTESTED.**
+
+## Round 4 — file-safe contrast contract
+- **Crash addressed:** no canvas pixels are read, so file:// image taint cannot affect this check.
+- **Art fix:** defined a pale `G.art.playerOutline=#fff3c4` readability rim. Painted strips get the rim from four offset silhouettes before the strip; procedural cloak strokes the same rim before fill.
+- **Check trace:** for each region the check reads `G.art.palette(id)` backdrop/tile mass colours (sky0, sky1, near, tile, side) and `G.world.REG[id]` deep/ink tile colours. `G.world.ratio` already implements WCAG relative luminance. Every sampled colour must be >=3:1 against the actual rim colour; threshold unchanged.
+- **Test:** `node tools/smoke.mjs art_contrast --serial`, then visually verify the rim is subtle rather than halo-like at gameplay zoom. **UNTESTED.**
