@@ -1,0 +1,7 @@
+<!doctype html><meta charset="utf-8"><title>Pass 72 vs painted references</title>
+<style>body{margin:0;background:#171a1c;color:#eee;font:14px Georgia}main{max-width:1500px;margin:auto;padding:20px}.row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:24px 0}.card{background:#ece5d2;color:#171a1c;padding:10px}.card img{width:100%;height:auto;image-rendering:auto}canvas{width:100%;height:auto;background:#ece5d2}code{color:#8d642e}</style>
+<main><h1>Pass 72 vs decoded painted references</h1><p>This proof uses the repository's own decoded <code>_refs/*.b64</code> PNGs on the left and browser <code>engine_v4.js</code> on the right. No proxy references.</p>
+<div id="rows"></div></main><script src="engine_v4.js"></script><script>
+const rows=[['Wanderer','wanderer','_refs/player_idle.png','base'],['Strider','strider','_refs/strider_move.png','r1'],['Gearling','gearling','_refs/gearling_move.png','r4']],root=document.querySelector('#rows');
+for(const [name,id,src,pal] of rows){const row=document.createElement('div');row.className='row';const a=document.createElement('div');a.className='card';a.innerHTML='<b>'+name+' — painted</b><img src="'+src+'">';const b=document.createElement('div');b.className='card';b.innerHTML='<b>'+name+' — engine v4</b>';const cv=document.createElement('canvas'),sp=G.lineartV4.specs[id];cv.width=sp.frame[0]*4;cv.height=sp.frame[1]*4;G.lineartV4.render(cv.getContext('2d'),id,cv.width/2,cv.height-sp.h*.15,4,0,pal,{density:1.08,boil:0,seed:27182});b.appendChild(cv);row.append(a,b);root.appendChild(row)}
+</script>
