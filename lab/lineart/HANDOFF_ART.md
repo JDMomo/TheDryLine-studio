@@ -13,3 +13,8 @@ All browser visual results are **UNTESTED** here; repository inputs and code pat
 ## Pass 73
 - Pass 73 is the first v4 browser pass: slightly denser interior value strokes, reduced idle boil, zero critical-pose boil, no anatomy change. This specifically targets the painted references' steadier silhouettes while retaining procedural hatch texture.
 - Test in the compare page at gameplay scale and 200% zoom; reject if contour chatter or part drift appears. **UNTESTED.**
+
+## Round 3 — binary proof path
+- Added `build_painted_proof.mjs`, Node-built-ins only. It decodes the exact three `_refs/*.b64` payloads and writes a real PNG proof file path under `passes/`; it never invokes `proxy_ref()`.
+- `engine_v4.js` and the HTML side-by-side proof are already present on this branch from the prior commit; this commit makes the missing binary-proof generation reproducible in the repository.
+- Test: `node lab/lineart/build_painted_proof.mjs`, then inspect `passes/pass_72_vs_painted.png` and the browser compare page. **UNTESTED.**
