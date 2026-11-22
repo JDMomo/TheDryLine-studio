@@ -1,10 +1,10 @@
-# Known issues — studio lead round 2
+# Known issues — studio lead round 3
 
-- **Level / hub_layout:** Drill Yard reward props can overlap working props, making the yard visually/collision-wise crowded.
-- **Level / region_signature:** several region main rooms are missing the terrain/mechanism mix that should make their line immediately recognizable.
-- **Combat / enemy_materials — TEST-ONLY metadata failure:** Harvester and Mirage material tags/check vocabulary are incomplete; current gameplay attacks are not reported broken by this failure.
-- **Bosses / boss_final:** the Long Clock pendulum can hit the simple jump bot at the 140 px setup after the branch's phase-presentation changes.
-- **Systems / opening_loop — TEST-ONLY placement mismatch:** the teaching check looks only in Wreck Quay room one although worldgen guarantees the useful trunk somewhere in Wreck Quay before its Warden.
-- **World Art / art_contrast — TEST-ONLY sampling failure until resampled:** the current contrast check compares palette values incorrectly and reports ~1:1; actual on-canvas player/background contrast has not yet been established.
-- **Audio / audio_contract:** pogo/down-slash bounce has no dedicated sound, so that movement confirmation is missing.
-- **Line Art / visual review — REVIEW-ONLY, not a smoke failure:** pass 72 still needs a repository proof beside the decoded painted references before the visual gate can be accepted.
+- **Audio — BLOCKER:** malformed Last Timetable bars in Signal Reef/Salt Cutting cause those tracks to be rejected and cascade errors across the game.
+- **Bosses/Engine — TEST-ONLY presentation regression:** Long Clock no longer satisfies the shared half-health presentation check after its pendulum fix.
+- **Level:** the Wreck Quay rail-cart marker is under solid geometry and fails room lint.
+- **Level:** regional-signature coverage still needs an active r1 cart and three Ticket Hall main rooms carrying its plate/timed-gate language.
+- **World Art — TEST-ONLY until merged:** rendered player/background contrast sampler was not present in the lead's merged build; previous ~1:1 values came from invalid sampling.
+- **World Art:** tar and mud need clearly different material reads at gameplay scale.
+- **Line Art — REVIEW-ONLY:** repository still needs the actual painted-reference comparison PNG and continuing v4 pass proof before visual acceptance.
+- **Combat/Systems/QA:** round-2 failing checks are green in the studio lead's merged suite; their next-item work is not a release regression.
