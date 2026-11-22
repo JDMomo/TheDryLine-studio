@@ -130,10 +130,10 @@ G.defineRoom({
     { type: 'cache', c: 90, r: 12, data: { scrip: 20, name: 'Lost property' } },
     // Four permanent Drill Yard practice rewards. The geometry demonstrates the move; the cache itself also refuses the reward until that move is owned,
     // so a route shortcut or co-op boost cannot accidentally teach the wrong lesson.
-    { type: 'cache', c: 27, r: 37, data: { scrip: 5, name: 'Dash drill tin', need: 'dash', hint: 'Clear the marked gap with one committed Dash.' } },
+    { type: 'cache', c: 19, r: 37, data: { scrip: 5, name: 'Dash drill tin', need: 'dash', hint: 'Clear the marked gap with one committed Dash.' } },
     { type: 'cache', c: 18, r: 28, data: { scrip: 5, name: 'Wall Grip drill tin', need: 'wall', hint: 'Use the training wall: cling, jump, cling again.' } },
     { type: 'cache', c: 15, r: 23, data: { scrip: 5, name: 'Double Jump drill tin', need: 'double', hint: 'The loft is intentionally above a normal jump.' } },
-    { type: 'cache', c: 30, r: 28, data: { scrip: 5, name: 'Heavy Cut drill tin', need: 'heavy', hint: 'Heavy Cut is the answer to cracked barriers on the line.' } },
+    { type: 'cache', c: 12, r: 28, data: { scrip: 5, name: 'Heavy Cut drill tin', need: 'heavy', hint: 'Heavy Cut is the answer to cracked barriers on the line.' } },
     { type: 'sign', c: 3, r: 46, data: { text: 'DRILL YARD. Mud drags at your boots. Salt crust is slick, and wet tokens dissolve it. Belts push. Springs throw.' } },
     { type: 'sign', c: 10, r: 37, data: { text: 'Crumbling ledges give way if you stand on them. Keep moving. Steam vents lift you when they puff.' } },
     { type: 'sign', c: 8, r: 37, data: { text: 'Tar burns. A flammable or spark token clears it.' } },
