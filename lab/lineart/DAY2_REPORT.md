@@ -1,0 +1,4 @@
+# Day-2 continuation — 2026-11-22
+Completed the next PDF items that can be done inside the research lane: data specs now cover the remaining enemy cast and all five Wardens; material-specific stroke grammars cover metal, cloth, salt/stone, glass/glow and wood; hit/defeat hooks reuse generated line art; palette families cover Wreck Quay, Signal Reef, Salt Cutting, Ticket Hall and Terminus; a coverage page bakes every spec and checks the 2 MiB raw-memory ceiling.
+
+The PDF's remaining Day-2 bullets are now represented in code, but **final shippable art is still not honestly complete**. The boss specs need attack-specific articulation and the renderer still needs the requested real-Chrome visual/bake benchmark. The professional 8/10 gate from the owner's continuation prompt therefore remains open rather than being falsely marked passed.
