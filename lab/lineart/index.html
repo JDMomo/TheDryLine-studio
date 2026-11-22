@@ -1,6 +1,7 @@
-<!doctype html><meta charset="utf-8"><title>The Dry Line — Line-Art Pass 73</title>
-<style>body{margin:0;background:#171a1c;color:#eee;font:14px Georgia}main{max-width:1640px;margin:auto;padding:20px}img{display:block;width:100%;height:auto;background:#ece5d2}code{color:#e0c68b}</style>
-<main><h1>Procedural Line-Art — current proof</h1>
-<p>The renderer that produced this proof is <code>render_pass.py</code>. Regenerate with <code>python render_pass.py 72 pass_72_vs_painted.html</code>.</p>
-<img src="passes/pass_72.png" alt="Pass 72 contact sheet">
-<p>Gate status: OPEN. See CRITIQUE.md. Earlier browser renderer files are retained for research but are not the pass-73 browser renderer.</p></main>
+<!doctype html><meta charset="utf-8"><title>The Dry Line — Line-Art Engine v4 / Pass 73</title>
+<style>body{margin:0;background:#171a1c;color:#eee;font:14px Georgia}main{max-width:1500px;margin:auto;padding:20px}.row{display:grid;grid-template-columns:180px 1fr;gap:18px;align-items:start;margin:18px 0;padding:12px;background:#24282b}canvas{background:#e8dfc8;image-rendering:auto}code{color:#e0c68b}</style>
+<main><h1>Procedural Line-Art Engine v4 — live Pass 73</h1><p>Every row below is drawn live by <code>engine_v4.js</code>: 1x at left inside the canvas, 4x at right.</p><div id="live"></div><p><a href="pass_72_vs_painted.html">Pass 72 vs painted references</a></p></main>
+<script src="./engine_v4.js"></script><script>
+const cfg=[['Wanderer','wanderer','base'],['Strider','strider','r1'],['Gearling','gearling','r4']],root=document.querySelector('#live');
+for(const [name,id,pal] of cfg){const sp=G.lineartV4.specs[id],row=document.createElement('div');row.className='row';row.innerHTML='<b>'+name+'</b>';const cv=document.createElement('canvas');cv.width=sp.frame[0]*5+48;cv.height=Math.max(sp.frame[1]*4+24,120);const q=cv.getContext('2d');G.lineartV4.render(q,id,sp.frame[0]/2+12,cv.height-12,1,0,pal,{density:1.08,boil:.08,seed:27182});G.lineartV4.render(q,id,sp.frame[0]+sp.frame[0]*2+30,cv.height-12,4,0,pal,{density:1.08,boil:.08,seed:27182});row.appendChild(cv);root.appendChild(row)}
+</script>

@@ -1,6 +1,7 @@
 (()=>{'use strict';
 const TAU=Math.PI*2, G=window.G=window.G||{};
-// v4: browser renderer tuned after direct comparison with decoded painted repository references.\nconst P={
+// v4: browser renderer tuned after direct comparison with decoded painted repository references.
+const P={
  base:{ink:'#12171b',deep:'#273036',mid:'#5a6467',warm:'#9a6a46',light:'#d9c18c',paper:'#e8dfc8',accent:'#bd7f42',lamp:'#f3e4b5',warn:'#b8482f'},
  r1:{ink:'#11191a',deep:'#24403d',mid:'#5a6258',warm:'#8f5b3b',light:'#c9a27a',paper:'#e6dcc2',accent:'#b06e42',lamp:'#f4e6b8',warn:'#b8482f'},
  r3:{ink:'#121821',deep:'#2d3945',mid:'#708391',warm:'#9b8f7d',light:'#dfe9f0',paper:'#e9e2d1',accent:'#a6c0cf',lamp:'#f4e6b8',warn:'#b8482f'},

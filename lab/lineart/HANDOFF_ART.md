@@ -18,3 +18,9 @@ All browser visual results are **UNTESTED** here; repository inputs and code pat
 - Added `build_painted_proof.mjs`, Node-built-ins only. It decodes the exact three `_refs/*.b64` payloads and writes a real PNG proof file path under `passes/`; it never invokes `proxy_ref()`.
 - `engine_v4.js` and the HTML side-by-side proof are already present on this branch from the prior commit; this commit makes the missing binary-proof generation reproducible in the repository.
 - Test: `node lab/lineart/build_painted_proof.mjs`, then inspect `passes/pass_72_vs_painted.png` and the browser compare page. **UNTESTED.**
+
+## Round 4 — JS file integrity and live index
+- **File-writing bug addressed:** `engine_v4.js` comment and `const P` are separate physical lines; no literal backslash+n is used there.
+- `index.html` now loads `./engine_v4.js` and draws Wanderer/Strider/Gearling live at 1x and 4x on canvas; it no longer presents a saved PNG as the current engine proof.
+- `pass_72_vs_painted.html` uses existing relative paths `./engine_v4.js` and `./_refs/*.png`; those PNGs are generated from the branch's own b64 files by `decode_refs.mjs`.
+- **Test:** decode refs, open both HTML files, verify no console error and all six live index renders plus three painted comparison rows appear. **UNTESTED.**
