@@ -1,35 +1,26 @@
-# 2026-11-22 combat feel audit and regional cast table
+# Enemy code audit — 2026-11-22
 
-This pass converts the existing design audit into the day brief's explicit production checklist. Automated state-contract checks are authoritative for timings; the browser connector cannot perform five human fights per enemy, so subjective feel remains flagged for QA rather than invented.
+**UNTESTED:** this is a static audit of `js/content/enemies.js`. No play session or automated check was run in this environment.
 
-| Enemy | Readable wind-up | Counter | Unfair-hit guard |
-|---|---|---|---|
-| Strider | claw raise, 0.38 s | jump/step behind, punish recovery | harmless outside committed lunge |
-| Boiler | pressure swell before lob/vent | close bait or reposition, punish spent state | harmless recovery; lob leaves visible Wet |
-| Scrapper | shield charge tell | flank/down-slash, punish recovery | front shield only; recovery opens it |
-| Rivet | rear-back tell | sidestep/switch height, punish post-swoop | hover/wind/recovery harmless |
-| Lamp Wisp | visible charge/death-pop | interrupt or retreat | damage tied to authored pulse/burst |
-| Brine Toad | crouch | bait landing, punish recovery | terrain-safe hop and warned landing |
-| Gearling | pump/wind | clear lane, wall crash punish | target locks through commit |
-| Hanging Lamp | shake | leave trigger lane | ceiling tell precedes drop |
-| Sapper | 0.70 s plant tell | interrupt/cut mine/leave mark | planted charge is cuttable |
-| Harvester | 0.85 s repair tell | prioritize/interruption | support pulse, not contact pressure |
-| Mirage | phase then 0.50 s reappearance tell | wait, dodge committed dash, punish recovery | fade itself is not damage |
+| Enemy / id | Harmful action | Wind-up in code | Counter visible in code |
+|---|---|---:|---|
+| Strider / `ballast_crab` | committed claw lunge | 0.38 s `wind` | bait the lunge, jump/pogo over it, punish 0.50 s recovery |
+| Boiler / `brine_spout` | arcing brine lob | 0.60 s `wind` | move before release; projectile is `cut:true`, so a slash can destroy it |
+| Boiler / `brine_spout` | close steam/brine vent | 0.42 s `ventwind` | bait the close-range branch, then leave the 58 px burst radius |
+| Scrapper / `turnstile` | shield charge | 0.55 s `wind` | down-slash/pogo bypasses guard; back hit works; 0.72 s recovery is open |
+| Rivet / `signal_gull` | arcing swoop | 0.55 s `wind` | bait the committed arc, sidestep/change height, punish 0.48 s recovery |
+| Lamp Wisp / `lamp_wisp` | death burst | 0.45 s `pop` | killing blow starts a harmless warning; leave the 56 px burst radius |
+| Brine Toad / `brine_toad` | hop + landing splashes | 0.40 s `crouch` | bait the hop/landing point; jump or pogo over the committed approach |
+| Gearling / `handcar` | floor dash | 0.65 s `wind` | bait the lane, jump/pogo over it, punish 0.90 s rest |
+| Hanging Lamp / `hanging_lamp` | ceiling drop | 0.45 s `shake` | step out from beneath the lamp during the shake |
+| Sapper / `sapper` | plant timed charge | 0.70 s `wind` | any hit causing `kbT > 0.02` interrupts the plant; leave/cut the warned charge |
+| Harvester / `harvester` | repair pulse (support, not player damage) | 0.85 s `wind` | any hit causing `kbT > 0.02` interrupts the repair |
+| Mirage / `mirage` | teleport dash | 0.50 s `tell` after 0.42 s `fade` | hit/pogo during tell to force recovery, or bait the committed dash |
 
-## Region casts
+## Wind-up floor
 
-| Region | Cast jobs |
-|---|---|
-| Wreck Quay | Strider rusher; Boiler ranged/space denial; Scrapper armour/lane holder; Sapper zoning |
-| Signal Reef | Strider ground spacing; Harvester support; Rivet aerial interceptor; Lamp Wisp proximity; Hanging Lamp ambush |
-| Salt Cutting | Strider rusher; Boiler ranged; Brine Toad area denial; Mirage ambush; Hanging Lamp ceiling hazard |
-| Ticket Hall | Strider rusher; Scrapper armour; Gearling heavy lane rush; Sapper zoning; Harvester support; Lamp Wisp aerial pressure |
-| Terminus | Gearling heavy; Boiler ranged; Strider spacing; Sapper zoning; Mirage ambush; Rivet aerial |
+The shortest harmful wind-up found is Strider at **0.38 s**. No harmful wind-up is below the requested 0.35 s floor, so this audit makes no timing change. The file header should describe the floor as 0.35 s, not 0.30 s.
 
-## Materials
+## Review note
 
-The production roster now declares a readable material vocabulary used by the new `enemy_materials` check: stone/brittle Strider, wet Boiler/Toad, metal mechanical enemies, flammable Lamp Wisp, salt/brittle Hanging Lamp, and cloth Mirage. This is metadata for deterministic interaction/presentation work and does not silently change damage rules.
-
-## Human-play handoff
-
-QA should still perform the brief's five-fights-per-type subjective pass at 1x and append only genuine human observations here. Do not convert automated timing coverage into a claim of human feel testing.
+Counters above are code-path interpretations only. They are **not hand-play findings**. The studio lead should verify readability and practical counter timing in play.

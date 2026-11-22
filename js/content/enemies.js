@@ -1,5 +1,5 @@
 /* CONTENT: enemies. One G.defineEnemy per type (fields and helpers: js/game/enemies.js; recipe: docs/ARCHITECTURE.md).
-   The active roster has eleven enemies: Strider, Boiler, Scrapper, Rivet, Gearling, Lamp Wisp, Brine Toad, Hanging Lamp, Sapper, Harvester and Mirage. Every hurtful attack has a visible wind-up of at least 0.3 s.
+   The active roster has eleven enemies: Strider, Boiler, Scrapper, Rivet, Gearling, Lamp Wisp, Brine Toad, Hanging Lamp, Sapper, Harvester and Mirage. Every hurtful attack has a visible wind-up of at least 0.35 s.
    Drawn in code: chunky rounded shapes, a 3 px dark outline, light fills so they read on the dark backgrounds. The three without
    watercolor art (Lamp Wisp, Brine Toad, Hanging Lamp) use the 'wash' helpers instead: warm ink 2 px outline, a light-to-dark wash on
    the fill, muted brass / moss / ochre, to sit beside the watercolor skins.
