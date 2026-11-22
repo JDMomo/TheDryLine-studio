@@ -210,7 +210,7 @@ defineTrack({ id: 'r2', title: 'Lamps in the Dusk', bpm: 132, sig: [7, 8], bars:
       A: 'F#5 . A5 . C#6 . A5 . . F#5 . E5 . .', B: 'B4 . D#5 . F#5 . D#5 . . B4 . A4 . .', C: 'E5 . G#5 . B5 . G#5 . . E5 . D5 . .', D: 'C#5 . E5 . G#5 . E5 . . C#5 . B4 . .' }, order: '____ABCDABCDABCD' },
   { id: 'perc', role: 'perc', inst: 'drums', vol: 0.4, parts: { A: 'k . . . h . . . r . . h . h', B: 'k . . . h . . . r . r . r .' }, order: '________AAAAAAAB' },
   { id: 'line', role: 'motif', inst: 'epiano', vol: 0.35, pan: -0.25, rev: 0.5, parts: { a: 'F#4 - - - - - C#5 - B4 - A4 - G#4 -', b: 'A4 - - - G#4 - F#4 - - - - - C#4 -' }, order: '______ab______ab' },
-  { id:'last_timetable', role:'motif', inst:'bell', vol:.17, parts:{A:'F#4 - - C#5 - A4 - G#4 - E4 - F#4 - -',B:'A4 - - C#5 - B4 - G#4 - F#4 - - C#4 - -'}, order:'________ABABABAB' },
+  { id:'last_timetable', role:'motif', inst:'bell', vol:.17, parts:{A:'F#4 - - C#5 - A4 - G#4 - E4 - F#4 - -',B:'A4 - - C#5 - B4 - G#4 - F#4 - C#4 - -'}, order:'________ABABABAB' },
   tenseLayer(14, 'F#2', 'G3')
 ] });
 

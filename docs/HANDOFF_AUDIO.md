@@ -29,3 +29,10 @@ All entries are **UNTESTED** in this environment.
 - **audio_contract trace:** once all tracks survive `defineTrack`, `M.tracks[id]` exists before `.layers` access; r1-r4 each have bed plus lead/motif, boss_clock remains present, and SFX_NAMES includes pogo from Round 2.
 - **Expected:** no music validation errors; r2/r3 remain registered; `audio_contract` no longer dereferences a missing track.
 - **Test:** full smoke suite, then `node tools/smoke.mjs audio_contract --serial` and audio validation/export. **UNTESTED.**
+
+## Round 4 — final r2 motif recount
+- **Blocking failure addressed:** r2 Last Timetable part B had 15 tokens for a 14-step 7/8 bar.
+- **Change:** removed the extra rest immediately before C#4.
+- **Validator trace:** `stepsPerBar` gives title=16, r1=16, r2=14, r3=12, r4=16. Whitespace-token recount after this edit: title A/B/C/D = 16/16/16/16; r1 A/B = 16/16; r2 A/B = 14/14; r3 A/B = 12/12; r4 A/B = 16/16. Layer commas were re-read: each inserted regional layer is followed by a comma before `tenseLayer`; title's `lastTimetableLayer()` is the final array entry and needs no trailing comma.
+- **Expected:** r2 survives `defineTrack`; `audio_contract` can read every required track's `.layers`.
+- **Test:** full suite plus `node tools/smoke.mjs audio_contract --serial`. **UNTESTED.**
