@@ -98,7 +98,7 @@ class Boss {
   constructor(def, x, y, region, limits) {
     Object.assign(this, { def, id: def.id, region, x, y, floor: y, vx: 0, vy: 0, face: -1, hp: def.hp, maxHp: def.hp, w: def.w, h: def.h,
       state: 'sleep', t: 0, t0: 0, sAge: 0, clock: 0, hits0: 0, spent0: 0, flash: 0, sealedT: 0, flags: {}, held: null,
-      attack: null, owned: [], hurtAt: -9, hurtHeavy: false, lastX: x, speed: 0,
+      attack: null, owned: [], hurtAt: -9, hurtHeavy: false, lastX: x, speed: 0, phase2: false, deathWash: 0,
       minX: limits.x0 + def.w / 2 + 13, maxX: limits.x1 - def.w / 2 - 13 });
     // Only the cuts on this run's lock chart have a fare slot at all (the fourth is not drawn, not listed, cannot be punched).
     const chart = G.run && G.run.graph && G.run.graph.chart && G.run.graph.chart[region];
@@ -240,7 +240,8 @@ class Boss {
     const have = G.game.partyClasses();
     for (const sp of this.spots) sp.open = have.has(sp.cls);
     const open = this.spots.filter(s => s.open).map(s => s.def.name);
-    this.set('intro', 1.0); fx.jolt(0, 10);
+    this.phase2 = false; this.deathWash = 0;
+    this.set('intro', 1.5); if (G.cam && G.cam.cue) G.cam.cue(this, 1.5); fx.jolt(0, 10);
     if (open.length) G.tips.fire('fare');
     const shut = this.spots.filter(s => !s.open).map(s => s.cls);
     fx.say(this.def.name, open.length ? 'Fare slots open: ' + open.join(', ') + '.' + (shut.length ? ' Sealed: needs a ' + shut.join(' or ') + ' token.' : '')
@@ -252,7 +253,12 @@ class Boss {
     if (this.state === 'sleep') return;
     if (this.state !== 'dead') this.clock += dt;
     this.t -= dt; this.sAge += dt;
-    if (this.state === 'dead') return;
+    if (this.state === 'dead') { this.deathWash = Math.max(0, this.deathWash - dt); return; }
+    // Shared phase presentation: every Warden gets one harmless half-health beat before its enraged pattern takes over.
+    if (!this.phase2 && this.hp > 0 && this.hp <= this.maxHp / 2 && this.state !== 'intro' && this.state !== 'stagger') {
+      this.phase2 = true; this.set('stagger', 0.7); fx.jolt(0.08, 12); fx.ring(this.x, this.y - this.h / 2, 20, 260, '#fff3c4', 0.45);
+      fx.say(this.def.name + ' — Phase II', 'The pattern changes.', 2.2);
+    }
     if (this.held) Object.assign(this, this.held);                 // test hook: G.debug.holdBoss
     else if (this.state === 'intro') { if (this.t <= 0) this.set('idle', C.BOSS_GRACE); }   // no attack for BOSS_GRACE seconds after the intro
     else if (this.state === 'stagger') {
@@ -264,7 +270,7 @@ class Boss {
     if (this.state !== 'stagger') for (const r of this.contactBoxes()) G.combat.hurtPlayers(r, this.x);
     this.speed = dt > 0 ? Math.abs(this.x - this.lastX) / dt : 0; this.lastX = this.x;       // for skins: walking or standing
     if (this.hp <= 0) {
-      this.hp = 0; this.set('dead', 0); fx.jolt(0.25, 18);
+      this.hp = 0; this.set('dead', 0); this.deathWash = 1.0; fx.slowmo(0.34, 0.32); fx.jolt(0.18, 18);
       fx.spark(this.x, this.y - this.h / 2, 80, '#f4e6b8', 620, 1.2); fx.ring(this.x, this.y - this.h / 2, 20, 700, '#fff3c4', 0.6);
       G.combat.clear(true);
       if (this.def.onDeath) this.def.onDeath(this);
@@ -292,6 +298,7 @@ class Boss {
       for (const sp of this.spots) this.drawSpot(ctx, sp);
     }
     ctx.restore();
+    if (this.state === 'dead' && this.deathWash > 0) { const k = U.clamp(this.deathWash, 0, 1); ctx.save(); ctx.globalCompositeOperation = 'screen'; ctx.globalAlpha = k * 0.28; ctx.fillStyle = '#fff3c4'; const r = this.rect(); ctx.fillRect(r.x0 - 12, r.y0 - 12, r.x1 - r.x0 + 24, r.y1 - r.y0 + 24); ctx.restore(); }
     if (G.debugBoxes) this.drawBoxes(ctx);
   }
   // The code-drawn body in the watercolor style: the painter draws into an offscreen canvas (boss space, origin bottom centre), which then gets a

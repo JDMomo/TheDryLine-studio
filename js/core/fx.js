@@ -6,7 +6,8 @@ const calm = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-mo
 const parts = [], floaters = [];
 
 const fx = G.fx = {
-  parts, floaters, hitstop: 0, shake: 0, banner: null, stampNow: null,
+  parts, floaters, hitstop: 0, shake: 0, slow: 0, slowScale: 1, banner: null, stampNow: null,
+  slowmo(t, scale = 0.35) { fx.slow = Math.max(fx.slow, t); fx.slowScale = Math.min(fx.slowScale || 1, scale); },
   spark(x, y, n, color, spd = 260, life = 0.35, grav = 600, size = 3) {
     for (let i = 0; i < n && parts.length < 800; i++) {
       const a = rnd(0, 6.283), s = rnd(spd * 0.3, spd);
@@ -32,6 +33,7 @@ const fx = G.fx = {
   flashT(t) { return G.meta.settings.reduceFlashes ? 0 : t; },
   clear() { parts.length = 0; floaters.length = 0; },
   update(dt) {
+    if (fx.slow > 0) { fx.slow = Math.max(0, fx.slow - dt); if (!fx.slow) fx.slowScale = 1; }
     for (let i = parts.length - 1; i >= 0; i--) {
       const q = parts[i]; q.life -= dt;
       if (q.life <= 0) { parts.splice(i, 1); continue; }
