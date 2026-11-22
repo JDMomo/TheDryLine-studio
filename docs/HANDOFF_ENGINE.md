@@ -16,3 +16,9 @@ All changes are **UNTESTED** here.
 - **Hand trace:** active attack states are neither `idle` nor `recover`, so no attack/hazard is interrupted. In `boss_final`, the Clock at 40% and idle receives only effects/flag; its state/timer remain untouched, preserving the pendulum timing fixed in Round 2. `boss_presentation` now requires phase2 for all, stagger for r1-r4, and explicitly no stagger for final.
 - **Expected:** `boss_final` remains green and `boss_presentation` accepts final's non-stagger beat.
 - **Test:** `node tools/smoke.mjs boss_final boss_presentation --serial`. **UNTESTED.**
+
+## Next — weak-point glow / crack / shatter
+- Existing shared `Boss.paintSpot()` already paints open slots in `G.CLASSES[sp.cls].color` with a pulsing outer glow, draws one radial crack for each lost HP, and switches to the broken dark/shattered badge after hit 3. `hitSpot()` also emits cut-colour spark/ring on each hit and a larger spark/ring on break.
+- Added `boss_weakpoints.mjs` to drive one slot through hits 1, 2 and 3 on all five Wardens and assert the state transitions behind those visuals.
+- **Hand trace:** `C.SPOT_HP` starts each slot at 3; `hitSpot` decrements before the `sp.hp>0` return, so paintSpot sees 2 then 1 and draws 1 then 2 cracks; third hit reaches 0 and sets `broken=true`.
+- Test: `node tools/smoke.mjs boss_weakpoints --serial`; visually punch a slot three times and verify cut-colour glow, 1/2 cracks, then shatter. **UNTESTED.**
