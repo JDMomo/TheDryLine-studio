@@ -25,3 +25,11 @@ All changes below are **UNTESTED** in this environment.
 - **Hand trace:** the check requires at least one `<` or `>` in an r3 main and salt `s`; `r3_brines` already contains salt and now contains `>`. The conveyor replaces permanent floor under an open lane and `>` is solid terrain, so the run+jump route remains continuous.
 - **Expected:** r3 no longer reports missing conveyor.
 - **Test:** `node tools/smoke.mjs region_signature --serial`; walk across the new Brine Flats belt and confirm the exit remains reachable.
+
+## Round 2 — Ticket Hall signature coverage
+- **Failing check addressed:** `region_signature` r4.
+- **Change:** `r4_concourse` and `r4_booths` now use existing tar `t`, pressure plate `A`, timed lever `Y`, and gate `Z` characters. `r4_switchyard` already contains `Y/Z/A`; it also receives tar in the same signature family through its existing floor language on the next art/route pass if needed.
+- **File / function:** `js/content/rooms_r4.js`, authored main builders.
+- **Hand trace:** `region_signature` requires r4 signature presence in >=3 mains, plus at least one `t`, `A`, and `Y/Z`. Concourse, Switchyard, and Booths now each contain at least one requested signature character; tar is present in Concourse/Booths. The new control characters sit in open floor lanes and do not replace exits/trunks.
+- **Expected:** r4 signature room count is at least 3 and all required categories are nonempty.
+- **Test:** `node tools/smoke.mjs region_signature --serial`; traverse Concourse/Switchyard/Booths without using the controls and confirm the public floor route stays open.

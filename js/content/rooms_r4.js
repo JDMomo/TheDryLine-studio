@@ -243,7 +243,8 @@ G.defineRoom({
 
   // 1. Grand Concourse — teaches conveyor reading with a calm upper canopy route.
   wide('r4_concourse',({fill,put})=>{
-    fill(15,15,4,16,'>'); fill(15,15,23,35,'<'); fill(15,15,42,53,'>');
+    fill(15,15,4,16,'t'); fill(15,15,23,35,'<'); fill(15,15,42,53,'>');
+    put(14,14,'Y'); put(14,16,'A'); put(14,18,'Z');
     // Ticket booth masses create recognizable bays but never close the floor.
     fill(12,14,18,20,'#'); fill(12,14,37,39,'#');
     fill(10,10,7,15,'='); fill(9,9,23,31,'='); fill(10,10,40,48,'=');
@@ -270,7 +271,8 @@ G.defineRoom({
     // Booth banks. Gaps between them are wide enough for combat and camera readability.
     fill(12,14,8,12,'#'); fill(12,14,20,24,'#'); fill(12,14,32,36,'#'); fill(12,14,44,48,'#');
     fill(9,9,6,14,'='); fill(8,8,18,26,'='); fill(9,9,30,38,'='); fill(8,8,42,50,'=');
-    fill(15,15,14,18,'>'); fill(15,15,26,30,'<'); fill(15,15,38,42,'>');
+    fill(15,15,14,18,'t'); fill(15,15,26,30,'<'); fill(15,15,38,42,'>');
+    put(14,15,'Y'); put(14,17,'A'); put(14,19,'Z');
     // Counter windows / small upper passage.
     fill(6,6,10,22,'='); fill(6,6,34,46,'=');
     put(14,16,'E'); put(14,28,'E'); put(14,40,'E'); put(14,52,'E');
