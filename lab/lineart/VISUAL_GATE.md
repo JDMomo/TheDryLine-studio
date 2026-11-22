@@ -1,0 +1,1 @@
+# Visual gate\n\nPasses 58 and 59 are the first consecutive contact sheets scoring >=8 in all nine categories. Pass 60 confirms the result. See CRITIQUE.md and REPORT.md. Local artifact bundle contains pass_01.png through pass_60.png plus A/B sheets and boil/run GIFs.\n

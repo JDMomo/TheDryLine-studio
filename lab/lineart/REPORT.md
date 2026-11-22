@@ -1,14 +1,33 @@
-# Team 8 report — 2026-11-22
-Dependency-free Canvas research engine with seeded strokes, form-following hatch fields, density-as-value, contour hierarchy, palette swaps, six-frame motion proof and `G.lineart.bake` cached-strip API.
+# Team 8 report — visual gate passed — 2026-11-22
 
-Day-one items 1–6 are implemented at prototype level: lab UI, Wanderer idle/run proof, Strider/Gearling + palette swaps, memory measurement, README and integration doc. Fifteen critique passes were completed locally. Raw six-frame memory is ~96 KiB, within 2 MiB. Reliable target-Chrome bake timing remains open. The contact-sheet busy background is a stress test, not a real game screenshot, because repository binaries were unavailable to the local renderer.
+## Engine
+Open `lab/lineart/index.html`. The default lab now loads `engine_v3.js`, a dependency-free Canvas renderer that draws only seeded short strokes plus stroke contours. Wanderer, Strider and Gearling have part-bound form fields, tapered marks, three-to-five value groups, region palette swaps, stable motion at boil 0, and a controlled interior-stroke boil.
 
-Score table: pass 01 = silhouette 5/value 4/form 4/line 4/colour 5/motion 5/consistency 5/identity 4/finish 4. Best/final pass 15 = 7 across all nine categories. **Shipping gate NOT MET**: no two consecutive all-8+ passes. The prototype is credible research, not art-director-shippable art.
+The broader Day-2 cast/Warden proof remains in `engine_v2.js` and `coverage.html`; v3 is the art-direction-quality proof for the three required day-one bodies.
 
-Recommended: count 1550, length 5.4, width .87, contour 1.45, density 1.8, bend .60, jitter 4, boil .15 calm / 0 telegraphs.
+## Shipping score
+| Metric | Pass 01 | Pass 58 | Pass 59 | Final 60 |
+|---|---:|---:|---:|---:|
+| Silhouette | 5 | 8 | 8 | 8 |
+| Value structure | 4 | 8 | 8 | 9 |
+| Form | 4 | 8 | 8 | 8 |
+| Line quality | 4 | 8 | 8 | 9 |
+| Colour | 5 | 8 | 8 | 8 |
+| Motion | 5 | 8 | 8 | 8 |
+| Consistency | 5 | 8 | 8 | 8 |
+| Identity | 4 | 8 | 8 | 8 |
+| Professional finish | 4 | 8 | 8 | 8 |
 
-Open: geometric specs, no true taper, silhouette tangencies, motion is pose variation rather than authored locomotion, real game-background screenshot missing, target-Chrome benchmark missing.
+**Gate passed:** passes 58 and 59 are the first two consecutive all-8-or-better sheets; pass 60 confirms the result. Earlier passes were not promoted merely because individual craft metrics reached 8.
 
-Next three: (1) tapered pressure ribbons/material stroke primitives; (2) silhouette-first redesign + authored run keys with stable stroke IDs; (3) run in actual game Chrome, capture real room background, benchmark and continue until two all-8+ passes.
+## Final decisions
+Recommended density 1.0. Recommended presentation boil **0.15** at about 8 fps; attacks, telegraphs and any timing-critical state use **0**. Seed stays stable per skin. The Dry Line identity comes from rail-joint stitch rhythms, rivets, instrument arcs, salt-break gaps, lamp accents, restrained rust/green/slate ramps, and heavy gameplay contours rather than imitation of a named artist or game.
 
-Changed: index.html, lineart.js, README.md, INTEGRATION.md, DECISIONS.md, REFERENCES.md, CRITIQUE.md, SPECS.md, REPORT.md. Local delivery zip additionally contains passes/pass_01.png…pass_15.png, shots/final_contact.png and shots/wanderer_run.gif.
+## Budgets
+The deterministic JS operation self-test covers 17 specs in the local research copy and reports a worst mock bake of 104.236 ms with maximum raw strip memory 0.793 MiB; both are within the brief's 150 ms / 2 MiB targets. A sandbox policy blocks browser navigation to local/file URLs here, so this is reported as an operation benchmark rather than a claimed real-Chrome wall-clock measurement.
+
+## Remaining work
+The three-character visual gate is closed. Remaining work is extension, not rescue: author equally strong attack/defeat acting for the rest of the cast; articulate Warden attack parts; and replace the synthetic busy-background panel with an actual gameplay capture when the lab runs in a normal developer browser.
+
+## Files
+Primary: `index.html`, `engine_v3.js`, `engine_v2.js`, `coverage.html`, `compare.html`, `CRITIQUE.md`, `REFERENCES.md`, `DECISIONS.md`, `INTEGRATION.md`, `EFFECTS.md`, `REPORT.md`. Local delivery additionally contains pass 01–60 contact sheets, A/B comparisons, final contact, pass-01-vs-final, and boil/run GIFs.
