@@ -125,6 +125,7 @@ const N = (X, o) => noise(X.e, Object.assign({ t: X.t, dest: X.d }, o, { vol: (o
 const SFX = {
   jump: X => T(X, { type: 'square', f: 280, f1: 560, dur: 0.12, vol: 0.12, lp: 2600 }),
   doubleJump: X => { T(X, { type: 'square', f: 420, f1: 840, dur: 0.1, vol: 0.1, lp: 3000 }); T(Object.assign({}, X, { t: X.t + 0.06 }), { type: 'triangle', f: 700, f1: 1500, dur: 0.14, vol: 0.12 }); },
+  pogo: X => { T(X, { type: 'sine', f: 400, f1: 900, slide: 0.06, dur: 0.06, vol: 0.11 }); N(X, { type: 'highpass', f: 4200, dur: 0.025, vol: 0.045 }); },
   land: X => { N(X, { type: 'lowpass', f: 700, f1: 200, dur: 0.1, vol: 0.28 }); T(X, { type: 'sine', f: 110, f1: 55, dur: 0.1, vol: 0.3 }); },
   dash: X => { N(X, { type: 'bandpass', f: 700, f1: 3200, q: 1.2, dur: 0.16, vol: 0.2 }); T(X, { type: 'sine', f: 220, f1: 420, dur: 0.12, vol: 0.08 }); },
   slash: X => N(X, { type: 'bandpass', f: 3000, f1: 900, q: 1.1, dur: 0.1, vol: 0.2 }),
@@ -487,7 +488,7 @@ function install() {
       return r;
     });
     wrap(P, 'startSlash', orig => function (heavy) { const r = orig.apply(this, arguments); note(() => A.sfx(heavy ? 'heavyCut' : 'slash', { pan: panOf(this.x) })); return r; });
-    wrap(P, 'slashLanded', orig => function (s) { if (s && s.dir === 'down') this._audPogo = G.time; return orig.apply(this, arguments); });
+    wrap(P, 'slashLanded', orig => function (s) { const r = orig.apply(this, arguments); if (s && s.dir === 'down') { this._audPogo = G.time; note(() => A.sfx('pogo', { pan: panOf(this.x) })); } return r; });
     wrap(P, 'useItem', orig => function () { const r = orig.apply(this, arguments); note(() => { if (this.castAt === G.time && this.castCls) A.sfx('cut' + cap(this.castCls), { pan: panOf(this.x) }); }); return r; });
     wrap(P, 'hurt', orig => function () { const r = orig.apply(this, arguments); note(() => { if (r === true) A.sfx(this.down ? 'down' : 'hurt', { pan: panOf(this.x) }); }); return r; });
     wrap(P, 'revive', orig => function () { const was = this.down, r = orig.apply(this, arguments); note(() => { if (was) A.sfx('revive'); }); return r; });
