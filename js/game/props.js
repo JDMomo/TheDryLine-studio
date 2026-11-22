@@ -576,11 +576,23 @@ const TYPES = {
   cache: {
     interact(pr) {
       const d = pr.data; if (d.taken) return;
+      if (d.need && !(G.run.abil && G.run.abil[d.need])) {
+        const names = { dash:'Dash', wall:'Wall Grip', double:'Double Jump', heavy:'Heavy Cut' };
+        fx.say(d.name || 'Drill reward', d.hint || ('Practice station: unlock ' + (names[d.need] || d.need) + ' first.'), 2.0);
+        return;
+      }
       d.taken = true; G.run.shards += d.scrip || 0;
       fx.spark(pr.x, pr.y - 20, 16, '#fff3c4', 220, 0.5); fx.floatText(pr.x, pr.y - 60, '+' + (d.scrip || 0) + ' scrip', '#fff3c4');
       fx.say(d.name || 'Stash', 'Someone hid ' + (d.scrip || 0) + ' scrip here and never came back for it.', 2.2);
     },
-    prompt(pr, p) { return pr.data.taken ? null : [pr.data.name || 'Stash', 'A forgotten tin box.', useName(p) + ' to open']; },
+    prompt(pr, p) {
+      if (pr.data.taken) return null;
+      if (pr.data.need && !(G.run.abil && G.run.abil[pr.data.need])) {
+        const names = { dash:'Dash', wall:'Wall Grip', double:'Double Jump', heavy:'Heavy Cut' };
+        return [pr.data.name || 'Drill reward', pr.data.hint || ('Practice station for ' + (names[pr.data.need] || pr.data.need) + '.'), 'Unlock ' + (names[pr.data.need] || pr.data.need) + ' to claim'];
+      }
+      return [pr.data.name || 'Stash', pr.data.hint || 'A forgotten tin box.', useName(p) + ' to open'];
+    },
     draw(pr, ctx) {
       const x = pr.x, y = pr.y, d = pr.data;
       ctx.fillStyle = d.taken ? '#3a3a34' : '#6f6a52'; ctx.fillRect(x - 12, y - 14, 24, 14);

@@ -1,3 +1,17 @@
+# Region signature and layered-route pass — 2026-11-22
+
+Each region has a readable traversal verb that appears in at least three main rooms. The automated `region_signature` check counts main-room usage and also requires every element of the signature to appear somewhere in its region.
+
+- **Wreck Quay:** mud, rail carts and crumble. The low route stays on stable dock floor; skilled lines use ribs, carts and crumble timing.
+- **Signal Reef:** springs, steam vents and one-way platforms. The safe line is the wide shelf stair; skilled lines use vent boosts and upper lamp shelves.
+- **Salt Cutting:** salt crust and conveyors, with stable stone landings between slippery stretches.
+- **Ticket Hall:** tar, pressure plates and timed gates, with a plain public route and faster service passages.
+- **Junction:** the Drill Yard now has one small scrip reward for each movement unlock—Dash, Wall Grip, Double Jump and Heavy Cut. The reward cache will not open until the corresponding move is actually owned.
+
+The three weakest campaign mains chosen for route layering were **r1_dock / r1_tunnel / r1_wreck**, **r2_spire / r2_roost / r2_tower**, **r3_brines / r3_terraces / r3_trestle**, and **r4_concourse / r4_booths / r4_balcony**. In each set, the intended composition is: a low forgiving line that never requires an unlock, an upper faster line carrying a trunk/cache or good sightline, and an optional pocket reached by the region's material or movement language. Secrets are bonuses, never the only route forward.
+
+`r2_shaft` remains the vertical readability benchmark: wide overlapping one-way shelves are no more than three rows apart, a missed jump is caught below, vents are off the mandatory climb line, and the two flyers wake away from the centre. A human under-60-second climb remains a playtest requirement; the geometry is now explicitly guarded by the signature/route checks.
+
 # Authored Level Design Contract
 
 The campaign is built as a memorable place first and a replay system second.
