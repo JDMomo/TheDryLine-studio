@@ -69,3 +69,38 @@ Every run was sampled: b_r2, c_r2, c_r3, c_r4, c_final, plus the round-1 audio s
 
 ## Files
 `tools/playtest.mjs`, `tools/lib/ptbrain.js`, this report, screenshots under `tools/shots/playtest_*.png`.
+
+
+# Round 3 release gate — 2026-11-22
+
+This section does not fabricate the brief's two human start-to-finish sessions or physical keyboard+pad co-op session. Repository APIs are available here; an interactive local browser/controller session is not. Those rows remain REQUIRED before release.
+
+## Top issues to verify
+|#|Issue|Owner|Severity|Status|
+|---:|---|---|---|---|
+|1|Human full run in region order|7 QA|blocker|open|
+|2|Human straight-to-Terminus-after-one-Warden run|7 QA|blocker|open|
+|3|Physical keyboard+pad join/leave/revive/camera/scaling|7 QA|blocker|open|
+|4|Signal Reef shaft human under-60-second climb|1 Level|major|open|
+|5|Warden 3x human fight timing/hit tables|3 Bosses|major|open|
+|6|11-enemy five-fight subjective feel pass|2 Combat|major|open|
+|7|Real Chrome/GPU p99 frame profiling|3 Engine|major|open|
+|8|Per-region 1280x720 contrast screenshot sampling|5 Art/UI|major|open|
+|9|Browser listening table and r3/r4 arrangement judgement|6 Audio|major|open|
+|10|60-second busiest-fight offline audio safety render after integration|6 Audio|major|open|
+|11|200-seed token-pressure output after Systems integration|4 Systems|major|open|
+|12|All team PRs pass fast suite after conflict resolution|7 QA|blocker|open|
+|13|Release zip tested in fresh browser profile|7 QA|blocker|open|
+|14|Pending painted files do not 404 when registered|5 Art/UI|minor|open|
+|15|Final second-pass regression table across merged team changes|7 QA|blocker|open|
+
+## Second-pass verification
+|PR/team|Fixed|Not fixed|Regressed|Evidence|
+|---|---|---|---|---|
+|Team 1 Level|pending|pending|pending|run after integration|
+|Team 2 Combat|pending|pending|pending|run after integration|
+|Team 3 Boss/Engine|pending|pending|pending|run after integration|
+|Team 4 Systems|pending|pending|pending|run after integration|
+|Team 5 Art/UI|pending|pending|pending|run after integration|
+|Team 6 Audio|pending|pending|pending|run after integration|
+|Team 8 Line-art|research only|n/a|n/a|not wired into game|
